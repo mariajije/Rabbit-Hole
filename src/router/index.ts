@@ -12,6 +12,11 @@ export const router = createRouter({
       component: Home
     },
     {
+  path: '/backrooms',
+  name: 'backrooms',
+  component: () => import('../pages/backrooms/Backrooms.vue'),
+},
+    {
       path: '/:patchMatch(.*)',
       redirect: '/'
     }
