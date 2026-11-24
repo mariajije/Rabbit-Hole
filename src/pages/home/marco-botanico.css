@@ -1,0 +1,45 @@
+
+.portada::before,
+.portada::after {
+  position: absolute;
+  top: 3.5rem;
+  bottom: 3.5rem;
+  width: clamp(0.8rem, 3vw, 2.4rem);
+  content: '';
+  pointer-events: none;
+  opacity: 0.75;
+
+  /* Las capas de color forman las flores, las hojas y el tallo. */
+  background:
+    radial-gradient(ellipse at 43% 18%, #f3a9ca 0 8%, transparent 10%),
+    radial-gradient(ellipse at 57% 18%, #d77da8 0 8%, transparent 10%),
+    radial-gradient(ellipse at 50% 25%, #b95b88 0 9%, transparent 11%),
+    radial-gradient(ellipse at 35% 47%, #ae5b82 0 13%, transparent 15%),
+    radial-gradient(ellipse at 65% 67%, #c8719b 0 13%, transparent 15%),
+    radial-gradient(ellipse at 35% 87%, #ae5b82 0 13%, transparent 15%),
+    linear-gradient(#a45c80, #a45c80) center / 1px 100% no-repeat;
+  background-size:
+    100% 5rem,
+    100% 5rem,
+    100% 5rem,
+    100% 5rem,
+    100% 5rem,
+    100% 5rem,
+    1px 100%;
+}
+
+.portada::before {
+  left: 0.4rem;
+}
+
+.portada::after {
+  right: 0.4rem;
+  transform: scaleX(-1);
+}
+
+@media (max-width: 639px) {
+  .portada::before,
+  .portada::after {
+    opacity: 0.45;
+  }
+}

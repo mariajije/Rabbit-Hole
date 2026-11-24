@@ -218,3 +218,5 @@ h1.titulo {
   font-size: 1.4rem;
 }
 </style>
+
+<style scoped src="./marco-botanico.css"></style>
