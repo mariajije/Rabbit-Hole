@@ -106,6 +106,38 @@ const niveles = [
 
 const indiceActivo = ref(0)
 const nivel = computed(() => niveles[indiceActivo.value] ?? niveles[0]!)
+
+const comentariosMiru: Partial<Record<number, { pose: string; comentario: string; lado: 'derecha' | 'izquierda' }>> = {
+  0: { pose: 'preguntona', comentario: '¿Y si la salida se parece tanto a las otras puertas que ya hemos pasado de largo?', lado: 'derecha' },
+  2: { pose: 'malita', comentario: 'Entre el calor y el ruido de las tuberías, necesito sentarme un segundo.', lado: 'izquierda' },
+  5: { pose: 'no', comentario: '¿Has oído el timbre de recepción? Yo no he tocado nada.', lado: 'derecha' },
+  37: { pose: 'dormida', comentario: 'El eco del agua me está dando sueño. Si me duermo, no me dejes aquí.', lado: 'derecha' },
+  188: { pose: 'llorando', comentario: 'He contado las ventanas dos veces. Ahora hay una más.', lado: 'izquierda' },
+}
+
+const aparicion = computed(() => comentariosMiru[nivel.value.numero])
+const carpetaMiru = import.meta.env.BASE_URL + 'Miru/'
+
+// Límites visibles de cada PNG, sin contar los márgenes transparentes.
+const encuadres: Record<string, { izquierda: number; arriba: number; ancho: number; alto: number }> = {
+  preguntona: { izquierda: .22, arriba: .20, ancho: .56, alto: .59 },
+  malita: { izquierda: .20, arriba: .17, ancho: .60, alto: .61 },
+  no: { izquierda: .17, arriba: .20, ancho: .65, alto: .60 },
+  dormida: { izquierda: .20, arriba: .22, ancho: .62, alto: .58 },
+  llorando: { izquierda: .15, arriba: .19, ancho: .70, alto: .62 },
+}
+
+const estiloRetrato = computed(() => {
+  const encuadre = encuadres[aparicion.value?.pose ?? '']
+  if (!encuadre) return {}
+
+  return {
+    '--relacion-retrato': encuadre.ancho / encuadre.alto,
+    '--ancho-png': 100 / encuadre.ancho + '%',
+    '--inicio-png': -100 * encuadre.izquierda / encuadre.ancho + '%',
+    '--arriba-png': -100 * encuadre.arriba / encuadre.alto + '%',
+  }
+})
 </script>
 
 <template>
@@ -147,7 +179,7 @@ const nivel = computed(() => niveles[indiceActivo.value] ?? niveles[0]!)
             <h2 class="font-serif text-3xl font-bold sm:text-4xl" aria-live="polite">
               {{ nivel.titulo }}
             </h2>
-            <p class="mt-3 max-w-2xl leading-relaxed text-rose-100">{{ nivel.texto }}</p>
+            <p lang="es" class="texto-nivel mt-3 max-w-2xl leading-relaxed text-rose-100">{{ nivel.texto }}</p>
             <p class="mt-5 text-sm">
               <a :href="'https://backrooms-wiki.wikidot.com/level-' + nivel.numero" class="text-pink-300 underline underline-offset-4">
                 Leer el nivel {{ nivel.numero }} en la wiki →
@@ -159,6 +191,18 @@ const nivel = computed(() => niveles[indiceActivo.value] ?? niveles[0]!)
               · encuadre 16:9
             </p>
           </div>
+          <aside
+            v-if="aparicion"
+            :key="nivel.numero"
+            class="aparicion-miru"
+            :class="{ 'lado-izquierdo': aparicion.lado === 'izquierda' }"
+            aria-label="Comentario de Miru"
+          >
+            <p class="bocadillo"><strong>Miru</strong> {{ aparicion.comentario }}</p>
+            <div class="retrato-miru" :style="estiloRetrato">
+              <img :src="carpetaMiru + 'miru-' + aparicion.pose + '.png'" alt="" />
+            </div>
+          </aside>
         </article>
       </section>
     </div>
@@ -214,5 +258,92 @@ const nivel = computed(() => niveles[indiceActivo.value] ?? niveles[0]!)
   padding: .25rem .85rem;
   color: var(--luz);
   font: bold clamp(1.35rem, 4vw, 2.5rem) Georgia, serif;
+}
+
+.aparicion-miru {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: .75rem;
+  overflow: hidden;
+  padding: 0 clamp(.7rem, 4vw, 2rem) .75rem;
+}
+
+.aparicion-miru.lado-izquierdo {
+  flex-direction: row-reverse;
+}
+
+.retrato-miru {
+  position: relative;
+  width: clamp(3.4rem, 9.2vw, 5rem);
+  aspect-ratio: var(--relacion-retrato, 1);
+  flex: 0 0 auto;
+  animation: asomarse .38s ease-out both;
+}
+
+.retrato-miru img {
+  position: absolute;
+  top: var(--arriba-png, 0%);
+  left: var(--inicio-png, 0%);
+  width: var(--ancho-png, 100%);
+  max-width: none;
+}
+
+@media (min-width: 1024px) {
+  .retrato-miru { width: clamp(5.45rem, 7.85vw, 7.65rem); }
+}
+
+.bocadillo {
+  position: relative;
+  max-width: 30ch;
+  min-width: 0;
+  margin: clamp(.15rem, .6vw, .65rem) 0 .25rem;
+  border: 1px solid #ba7b9e;
+  border-radius: .9rem;
+  padding: .65rem .85rem;
+  color: #ffe7f4;
+  background: #3b2034;
+  font-size: .95rem;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.bocadillo strong {
+  display: block;
+  margin-bottom: .2rem;
+  color: #ffc0dc;
+}
+
+.bocadillo::after {
+  position: absolute;
+  right: -.3rem;
+  top: .85rem;
+  width: .55rem;
+  height: .55rem;
+  border-top: 1px solid #ba7b9e;
+  border-right: 1px solid #ba7b9e;
+  background: #3b2034;
+  transform: rotate(45deg);
+  content: '';
+}
+
+.lado-izquierdo .bocadillo::after {
+  right: auto;
+  left: -.3rem;
+  transform: rotate(225deg);
+}
+
+@keyframes asomarse {
+  from { opacity: 0; transform: translateY(1.4rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .retrato-miru { animation: none; }
+}
+
+.texto-nivel {
+  text-align: justify;
+  hyphens: auto;
 }
 </style>

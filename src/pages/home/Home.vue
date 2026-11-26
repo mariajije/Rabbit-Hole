@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { computed, nextTick, ref } from 'vue'
 import BackroomsDetalle from './BackroomsDetalle.vue'
+import LugaresMalditosDetalle from './LugaresMalditosDetalle.vue'
 const miruSaludando = `${import.meta.env.BASE_URL}Miru/miru-saludando.png`
+
+const miruEstrella = import.meta.env.BASE_URL + 'Miru/miru-estrella.png'
 
 const entradas = [
   {
@@ -12,7 +15,7 @@ const entradas = [
   {
     "titulo": "Lugares malditos",
     "categoria": "Lugares y leyendas",
-    "descripcion": "Sitios reales con fama de estar malditos. Recorremos las historias que se cuentan sobre ellos y lo que se sabe de cada lugar."
+    "descripcion": "Hay lugares reales que se hicieron famosos por lo que alguien dijo haber oído o visto allí. Un piano en una mansión vacía, lamentos en un sanatorio o sombras que cruzan una celda. Miru ha reunido seis sitios para seguir el rastro de sus leyendas y descubrir qué había allí antes de que se volvieran virales."
   },
   {
     "titulo": "Foro oculto",
@@ -41,7 +44,16 @@ async function entrar() {
   tituloMadriguera.value?.focus()
 }
 
+const botonEntrada = ref<HTMLButtonElement | null>(null)
 const indiceActivo = ref(0)
+
+async function volverAEntrada() {
+  haEntrado.value = false
+  indiceActivo.value = 0
+  sessionStorage.removeItem(claveEntrada)
+  await nextTick()
+  botonEntrada.value?.focus()
+}
 const entradaActiva = computed(() => entradas[indiceActivo.value] ?? entradas[0]!)
 </script>
 
@@ -60,7 +72,7 @@ const entradaActiva = computed(() => entradas[indiceActivo.value] ?? entradas[0]
         <h2 id="umbral-titulo">¿Te atreves a bajar?</h2>
         <p>Miru ha encontrado cosas raras en internet. Te espera al otro lado.</p>
 
-        <button type="button" class="boton-entrada" @click="entrar">
+        <button ref="botonEntrada" type="button" class="boton-entrada" @click="entrar">
           <span class="portal">
             <img :src="miruSaludando" alt="" />
           </span>
@@ -70,11 +82,14 @@ const entradaActiva = computed(() => entradas[indiceActivo.value] ?? entradas[0]
 
       <section v-else class="interior" aria-label="La madriguera de Miru">
         <aside class="perfil">
-          <div class="camafeo">
-            <img :src="miruSaludando" alt="Miru saludando con una patita levantada" />
-          </div>
+          <button type="button" class="boton-volver" @click="volverAEntrada">
+            <span class="camafeo">
+              <img :src="miruEstrella" alt="" />
+            </span>
+            <span class="etiqueta-volver">Volver a la entrada</span>
+          </button>
           <h2>Miru</h2>
-          <p>Colecciono cosas raras de internet. ¿Por dónde quieres empezar?</p>
+          <p>¡Sabía que te atreverías! ¿Por dónde quieres empezar?</p>
         </aside>
 
         <div class="archivo">
@@ -94,17 +109,18 @@ const entradaActiva = computed(() => entradas[indiceActivo.value] ?? entradas[0]
           </div>
 
           <article id="entrada-activa" :key="entradaActiva.titulo" class="ficha">
-            <div class="ficha-contenido" :class="{ 'con-relato': entradaActiva.titulo === 'Los Backrooms' }">
+            <div class="ficha-contenido" :class="{ 'con-relato': ['Los Backrooms', 'Lugares malditos'].includes(entradaActiva.titulo) }">
               <div class="ficha-texto">
                 <p class="categoria">{{ entradaActiva.categoria }}</p>
                 <h3 aria-live="polite">{{ entradaActiva.titulo }}</h3>
-                <p class="descripcion">{{ entradaActiva.descripcion }}</p>
+                <p class="descripcion" lang="es">{{ entradaActiva.descripcion }}</p>
               </div>
 
               <BackroomsDetalle
                 v-if="entradaActiva.titulo === 'Los Backrooms'"
                 class="detalle"
               />
+              <LugaresMalditosDetalle v-else-if="entradaActiva.titulo === 'Lugares malditos'" class="detalle" />
             </div>
           </article>
         </div>
@@ -428,4 +444,25 @@ const entradaActiva = computed(() => entradas[indiceActivo.value] ?? entradas[0]
 .boton-entrada:hover .portal { border-color: #ffcee5; }
 .boton-entrada:hover .etiqueta-entrada { background: #ffe0ef; }
 .boton-entrada:focus-visible { outline: 2px solid #ffe0ef; outline-offset: 4px; }
+
+.boton-volver {
+  display: grid;
+  width: min(100%, 17rem);
+  justify-items: center;
+  gap: .65rem;
+  border-radius: .4rem;
+  padding: .2rem;
+  color: #f6bed9;
+  cursor: pointer;
+}
+
+.boton-volver:hover .camafeo { border-color: #ffc4e0; }
+.boton-volver:hover .etiqueta-volver { text-decoration: underline; }
+.boton-volver:focus-visible { outline: 2px solid #ffe0ef; outline-offset: 4px; }
+.etiqueta-volver { font-size: .9rem; text-underline-offset: .2em; }
+
+.con-relato .descripcion {
+  text-align: justify;
+  hyphens: auto;
+}
 </style>
