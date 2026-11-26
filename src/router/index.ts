@@ -26,6 +26,11 @@ export const router = createRouter({
       component: () => import('../pages/lugares-malditos/LugaresMalditos.vue'),
     },
     {
+      path: '/bestiario',
+      name: 'bestiario',
+      component: () => import('../pages/bestiario/Bestiario.vue'),
+    },
+    {
       path: '/:patchMatch(.*)',
       redirect: '/'
     }

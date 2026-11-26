@@ -2,6 +2,7 @@
 import { computed, nextTick, ref } from 'vue'
 import BackroomsDetalle from './BackroomsDetalle.vue'
 import LugaresMalditosDetalle from './LugaresMalditosDetalle.vue'
+import BestiarioDetalle from './BestiarioDetalle.vue'
 const miruSaludando = `${import.meta.env.BASE_URL}Miru/miru-saludando.png`
 
 const miruEstrella = import.meta.env.BASE_URL + 'Miru/miru-estrella.png'
@@ -29,8 +30,8 @@ const entradas = [
   },
   {
     "titulo": "Bestiario",
-    "categoria": "Ficción original",
-    "descripcion": "Criaturas y personajes inventados para este archivo. La primera solo aparece en el reflejo de una pantalla apagada."
+    "categoria": "Mitología y folclore",
+    "descripcion": "Antes de que el terror circulara por internet, ya había historias de criaturas que esperaban junto al agua o que solo se oían de noche. Miru ha reunido seis leyendas, desde la Quimera que respira fuego hasta la banshee que anuncia una muerte con su lamento. Cada ficha cuenta de dónde viene la criatura y cómo se la imaginó en esa tradición."
   }
 ]
 const claveEntrada = 'rabbit-hole:entrada-abierta'
@@ -109,7 +110,7 @@ const entradaActiva = computed(() => entradas[indiceActivo.value] ?? entradas[0]
           </div>
 
           <article id="entrada-activa" :key="entradaActiva.titulo" class="ficha">
-            <div class="ficha-contenido" :class="{ 'con-relato': ['Los Backrooms', 'Lugares malditos'].includes(entradaActiva.titulo) }">
+            <div class="ficha-contenido" :class="{ 'con-relato': ['Los Backrooms', 'Lugares malditos', 'Bestiario'].includes(entradaActiva.titulo) }">
               <div class="ficha-texto">
                 <p class="categoria">{{ entradaActiva.categoria }}</p>
                 <h3 aria-live="polite">{{ entradaActiva.titulo }}</h3>
@@ -121,6 +122,7 @@ const entradaActiva = computed(() => entradas[indiceActivo.value] ?? entradas[0]
                 class="detalle"
               />
               <LugaresMalditosDetalle v-else-if="entradaActiva.titulo === 'Lugares malditos'" class="detalle" />
+              <BestiarioDetalle v-else-if="entradaActiva.titulo === 'Bestiario'" class="detalle" />
             </div>
           </article>
         </div>
