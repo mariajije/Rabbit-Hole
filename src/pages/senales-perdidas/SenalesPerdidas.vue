@@ -98,9 +98,9 @@ const fichas = [
   {
     "id": "fotografias",
     "title": "Carpeta de fotografías",
-    "meta": "Tres fotografías de archivo · 1870–1920, aprox.",
-    "story": "Reuní tres fotografías que se publicaron o circularon como presuntas apariciones. En una hay un semblante sobre los hombros de una mujer. En otra, la forma apenas se distingue del sillón. Abre cada copia para ver qué señalaron quienes difundieron la imagen.",
-    "context": "En los estudios de fotografía espiritista, técnicas como la superposición permitían que una figura apareciera translúcida. En una toma larga, alguien que solo se queda quieto durante parte de la exposición también puede dejar una silueta tenue. Las tres imágenes muestran cómo una fotografía y la historia que la acompaña pueden cambiar lo que creemos ver.",
+    "meta": "Diez fotografías de archivo · De la década de 1870 a 2024",
+    "story": "Retratos de estudio, fotos de viajes y una imagen tomada durante un incendio. En todas hay un detalle que alguien interpretó como una aparición. Abre cada copia para ver dónde se tomó, cómo se difundió y de dónde viene esa interpretación.",
+    "context": "En los estudios de fotografía espiritista, técnicas como la superposición permitían que una figura apareciera translúcida. En una toma larga, alguien que solo se queda quieto durante parte de la exposición también puede dejar una silueta tenue. Estas imágenes muestran cómo una fotografía y la historia que la acompaña pueden cambiar lo que creemos ver.",
     "source": "https://blog.scienceandmediamuseum.org.uk/william-hope-spirit-photography/",
     "media": "",
     "credit": "",
@@ -172,6 +172,62 @@ const fotos = [
     "alt": "Retrato de una pareja junto a la figura tenue de una joven",
     "url": "https://upload.wikimedia.org/wikipedia/commons/9/97/CoupleWithSpirit_cropped.png",
     "fuente": "https://commons.wikimedia.org/wiki/File:CoupleWithSpirit_cropped.png"
+  },
+  {
+    "titulo": "El rostro del escuadrón",
+    "fecha": "Retrato atribuido a 1919 · Reino Unido",
+    "texto": "Detrás de uno de los hombres del retrato colectivo asoma parte de otro rostro. El oficial Victor Goddard difundió la imagen décadas después y lo identificó con el mecánico Freddy Jackson. Esa identificación proviene del relato que acompaña la foto.",
+    "alt": "Retrato de grupo con un rostro parcialmente oculto",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Freddy_jackson_lg.jpg",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Freddy_jackson_lg.jpg"
+  },
+  {
+    "titulo": "La Dama de Marrón",
+    "fecha": "Provand y Shira · Raynham Hall, 1936",
+    "texto": "Durante una sesión para fotografiar la mansión, una forma pálida quedó registrada en la escalera principal. La imagen se publicó en Country Life y acabó ligada a la leyenda de la Dama de Marrón. La figura del negativo y su identificación son dos partes distintas del relato.",
+    "alt": "Escalera de Raynham Hall con una forma clara en el centro",
+    "url": "https://surnateum.org/English/surnateum/collection/hauntics/image008.jpg",
+    "fuente": "https://surnateum.org/English/surnateum/collection/hauntics/photosspi.htm"
+  },
+  {
+    "titulo": "La niña del incendio de Wem",
+    "fecha": "Tony O’Rahilly · Inglaterra, 1995",
+    "texto": "O’Rahilly fotografió el incendio del ayuntamiento de Wem. En la puerta parecía haber una niña. Años después se encontró una postal antigua con una figura de aspecto y postura muy parecidos, lo que puso en duda la lectura paranormal de la imagen.",
+    "alt": "Ayuntamiento en llamas con una figura clara en una abertura",
+    "url": "https://www.paranormal-encyclopedia.com/a/apparition/photos/images/1995-11-19_fire.jpg",
+    "fuente": "https://www.shutterstock.com/editorial/image-editorial/ghost-girl-257203e"
+  },
+  {
+    "titulo": "La escalera del hotel Stanley",
+    "fecha": "Henry Yau · Colorado, 2016",
+    "texto": "Durante una visita al hotel Stanley, Yau tomó una foto de la escalera. Al revisar la imagen vio una figura oscura en el rellano. La foto se difundió por la fama del hotel y por lo difícil que resulta distinguir quién estaba allí a partir de una sola toma.",
+    "alt": "Escalera del hotel Stanley con una figura oscura en el rellano",
+    "url": "https://globalnews.ca/wp-content/uploads/2016/04/shining-hotel-ghost.jpg?quality=65&strip=all",
+    "fuente": "https://globalnews.ca/news/2645294/the-shining-hotel-alleged-ghost-photobombs-tourists-picture/"
+  },
+  {
+    "titulo": "La puerta del castillo de Crathes",
+    "fecha": "Bill Andrew · Escocia, 2016",
+    "texto": "La familia de Andrew posó delante del castillo. Al mirar la foto, su hija reparó en una forma en el vano oscuro. La prensa local relacionó la imagen con la leyenda de la Dama Verde del castillo, una asociación que surgió al revisar el retrato.",
+    "alt": "Retrato familiar frente al castillo de Crathes con una puerta oscura detrás",
+    "url": "https://www.scotsman.com/webimg/legacy_elm_51232798.jpg?crop=3%3A2%2Csmart&quality=65&trim=&width=640",
+    "fuente": "https://www.scotsman.com/whats-on/arts-and-entertainment/is-this-crathes-castles-green-lady-ghost-captured-on-camera-610576"
+  },
+  {
+    "titulo": "La figura entre las ruinas de Flint",
+    "fecha": "Fotografía de un visitante · Gales, 2021",
+    "texto": "Un padre fotografió las ruinas de Flint Castle durante una visita con su hijo. Según el relato publicado junto a la imagen, se fijó en la figura al mirar las fotos en casa. La silueta se distingue de la piedra, aunque la imagen por sí sola no permite saber quién o qué la produjo.",
+    "alt": "Ruinas de Flint Castle con una silueta al fondo",
+    "url": "https://mysticaltimesblog.com/ws/media-library/d79be80a50e443bf9182070c773fa1cd/flint-castle-ghost-1.jpg",
+    "fuente": "https://mysticaltimesblog.com/flint-castle-ghost/"
+  },
+  {
+    "titulo": "La sombra de Gómez Palacio",
+    "fecha": "Publicada por N+ Coahuila · 2024",
+    "texto": "Entre las imágenes que circularon sobre la clínica 46 del IMSS en Gómez Palacio, N+ publicó esta fotografía del pasillo. Parte de quienes la compartieron interpretó la sombra como una figura humana. La procedencia y la causa de la sombra quedaron sin confirmar.",
+    "alt": "Imagen publicada por N+ del pasillo de la clínica en Gómez Palacio",
+    "url": "https://static.nmas.com.mx/Nmas/cms/1779638065106-fantasma-en-hospital-de-g-mez-palacio.webp",
+    "fuente": "https://www.nmas.com.mx/coahuila/entretenimiento/captan-a-fantasma-en-la-clinica-46-del-imss-en-gomez-palacio/"
   }
 ]
 const seleccion = ref(0)
@@ -181,6 +237,7 @@ const audio = ref<HTMLAudioElement>()
 const reproduciendo = ref(false)
 const volumen = ref(25)
 const fotoActiva = ref(0)
+const fotoConError = ref(false)
 const foto = computed(() => fotos[fotoActiva.value]!)
 const tiempo = ref(0)
 const duracion = ref(0)
@@ -208,6 +265,7 @@ async function abrir(id: string) {
   confirmar.value = false
   cargarVideo.value = false
   fotoActiva.value = 0
+  fotoConError.value = false
   await nextTick()
   titulo.value?.focus()
 }
@@ -233,6 +291,7 @@ function actualizarVolumen(evento: Event) {
 }
 
 function moverFoto(paso: number) {
+  fotoConError.value = false
   fotoActiva.value = (fotoActiva.value + paso + fotos.length) % fotos.length
 }
 
@@ -273,6 +332,7 @@ function reloj(segundos: number) {
           </section>
         </nav>
         <article :key="ficha.id" class="documento">
+          <span class="clip-documento" aria-hidden="true"></span>
           <p class="fecha">{{ ficha.meta }}</p>
           <h2 ref="titulo" tabindex="-1">{{ ficha.title }}</h2>
           <p>{{ ficha.story }}</p>
@@ -309,9 +369,10 @@ function reloj(segundos: number) {
           </div>
           <div v-else-if="ficha.kind === 'gallery'" class="galeria">
             <figure :key="foto.url">
-              <a :href="foto.fuente" target="_blank" rel="noopener noreferrer">
-                <img :src="foto.url" :alt="foto.alt" />
+              <a v-if="!fotoConError" :href="foto.fuente" target="_blank" rel="noopener noreferrer">
+                <img :src="foto.url" :alt="foto.alt" @error="fotoConError = true" />
               </a>
+              <p v-else role="status">La vista previa no está disponible. Puedes abrir la publicación original.</p>
               <figcaption>
                 <span class="fecha">{{ foto.fecha }}</span>
                 <h3>{{ foto.titulo }}</h3>
@@ -369,7 +430,10 @@ button { cursor: pointer; border: 1px solid currentColor; padding: .48rem .7rem;
 nav button { border: 0; display: block; width: 100%; text-align: left; border-inline-start: 2px solid transparent; }
 nav button[aria-current], nav button:hover { background: #482439; border-inline-start-color: #efaccd; }
 button:focus-visible, a:focus-visible, h2:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
-.documento { background: repeating-linear-gradient(0deg, #71465b0b 0 1px, transparent 1px 5px), #e9cad3; color: #27151f; border: 1px solid #ab6e86; padding: clamp(1rem, 4vw, 3rem); box-shadow: 5px 5px #4f3042, 9px 9px #301c29; }
+.documento { position: relative; background: repeating-linear-gradient(0deg, #71465b0b 0 1px, transparent 1px 5px), #e9cad3; color: #27151f; border: 1px solid #ab6e86; padding: clamp(1rem, 4vw, 3rem); box-shadow: 5px 5px #4f3042, 9px 9px #301c29; }
+.clip-documento { position: absolute; top: -.8rem; right: 1.25rem; width: 1.1rem; height: 2.15rem; border: 2px solid #816273; border-bottom-color: #513b48; border-radius: .65rem; transform: rotate(12deg); box-shadow: 1px 2px 3px #27151f44, inset 1px 0 #fff2f8; pointer-events: none; }
+.clip-documento::after { content: ""; position: absolute; inset: .23rem .13rem .16rem .15rem; border: 2px solid #a38295; border-top-color: transparent; border-radius: .45rem; }
+.documento > .fecha { padding-inline-end: 2rem; }
 .documento h2 { font: bold clamp(2rem, 4.4vw, 4.5rem)/1.02 Georgia, serif; margin: .3em 0; overflow-wrap: break-word; }
 .documento h3 { font: bold 1.35rem Georgia, serif; margin-top: 1.5rem; }
 .documento p { max-width: 76ch; margin-block: .65rem; line-height: 1.65; }
