@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { RouterLink } from 'vue-router'
 
 const leyendas = [
@@ -8,20 +8,25 @@ const leyendas = [
     "titulo": "La niña de la curva",
     "origen": "España · tradición de carretera",
     "historia": [
-      "Una noche, una chica hace autostop en una carretera solitaria. Le dice al conductor que va un poco más lejos. Durante el trayecto parece una pasajera cualquiera. Todo cambia cuando reconoce una curva y le pide que reduzca la velocidad.",
-      "En la versión del aviso, la joven explica que murió allí y desaparece del vehículo. En otra, el conductor llega a la dirección que ella dio y descubre por su familia que llevaba tiempo muerta. La historia puede acabar como advertencia o como un encuentro que solo se entiende después.",
-      "La Fundación Joaquín Díaz recoge versiones situadas en carreteras diferentes. Cada localidad puede señalar su propia curva. Esa facilidad para cambiar de escenario explica parte de la fuerza del relato: quien lo escucha puede imaginar la carretera exacta por la que vuelve a casa."
+      "Vas por una carretera de noche cuando los faros alumbran a una chica en el arcén. Paras. Ella sube, se sienta y te pide que sigas. Durante unos kilómetros apenas habla. Al acercarte a una curva, de pronto te dice que frenes.",
+      "En una de las versiones, añade que murió en esa misma curva. Te vuelves y el asiento está vacío. En otra, deja que conduzcas hasta su casa. Allí, alguien abre la puerta y te dice que la joven a la que acabas de traer lleva años muerta.",
+      "En España, la misma historia se ha contado en carreteras distintas. En el Bajo Deba, por ejemplo, se asocia con la curva de la Pólvora. Cada versión tiene su propio tramo de carretera y el mismo instante en que el conductor se queda solo."
     ],
     "registros": [
       {
-        "titulo": "Carlos y Ana · versión recogida",
-        "texto": "El relato los sitúa en el País Vasco. Ven a una chica pálida haciendo autostop y la escena se convierte en una historia de apariciones en carretera.",
-        "fuente": "https://funjdiaz.net/folklore/07ficha.php?ID=2313&NUM=231"
+        "titulo": "Jerry Palus · variante de Chicago",
+        "texto": "En una entrevista grabada en 1986, Palus recordó que en 1939 conoció a una mujer en un salón de baile. Aseguró que la llevó en coche y la vio desaparecer cerca del cementerio de Resurrection. Su historia pertenece a una variante estadounidense de la autoestopista fantasma.",
+        "fuente": "https://www.cbsnews.com/chicago/news/chicago-hauntings-resurrection-mary-most-famous-ghost/"
       },
       {
-        "titulo": "La curva de la Pólvora · tradición local",
-        "texto": "Roberto Moso cuenta la versión que se asocia a un tramo de la N-634 en el Bajo Deba. Es una localización que circula en el relato oral.",
-        "fuente": "https://www.eitb.eus/es/audios/detalle/577405/la-chica-curva/"
+        "titulo": "Ralph, taxista · variante de Chicago",
+        "texto": "Contó al columnista Bill Geist que recogió a una mujer con vestido blanco en Archer Road. Dijo que, al llegar a la altura del cementerio, desapareció del taxi. Su declaración se publicó en 1979.",
+        "fuente": "https://www.cbsnews.com/chicago/news/chicago-hauntings-resurrection-mary-most-famous-ghost/"
+      },
+      {
+        "titulo": "Taxista sin identificar · Chicago, 1973",
+        "texto": "Según el relato recogido por CBS, un taxista dijo que una pasajera vestida de blanco había desaparecido sin pagar.",
+        "fuente": "https://www.cbsnews.com/amp/chicago/news/chicago-hauntings-resurrection-mary-most-famous-ghost/"
       }
     ],
     "fotos": [
@@ -32,32 +37,28 @@ const leyendas = [
     "miru": {
       "pose": "asustada",
       "frase": "Si alguien dice que conoce la curva, yo bajo la ventanilla y le pregunto desde cuándo."
-    }
+    },
+    "fuenteHistoria": "https://funjdiaz.net/folklore/07ficha.php?ID=2313&NUM=231"
   },
   {
     "id": "llorona",
     "titulo": "La Llorona",
     "origen": "México y otras comunidades hispanohablantes · tradición oral",
     "historia": [
-      "Una de las versiones mexicanas cuenta que María tuvo dos hijos con un hombre que acabó abandonándola. Desesperada, lleva a los niños al río de noche y los ahoga. Cuando comprende lo que ha hecho, sale a buscarlos. Al morir, queda condenada a recorrer las orillas llamándolos.",
-      "¿Dónde pasó? Cada comunidad sitúa el relato en su propia geografía. En Parral, Chihuahua, se contaba junto al río y los canales. El motivo también cambia: en unas versiones pesa el abandono, en otras los celos, la rabia o el arrepentimiento. La orilla y el lamento tienen más continuidad que el nombre de la mujer o el lugar exacto.",
-      "Con el tiempo, el relato se convirtió además en una advertencia familiar para que los niños volvieran pronto y se mantuvieran lejos del agua. El llanto nocturno recuerda a la banshee irlandesa, aunque allí el lamento suele anunciar una muerte. La búsqueda de los hijos pertenece a la historia de La Llorona."
+      "En una de las versiones mexicanas, la mujer se llama María. Tiene dos hijos y el hombre con el que los tuvo acaba abandonándola. Una noche, en un momento de desesperación, los lleva al río. Cuando el agua se los lleva, María sale tras ellos. En el relato, muere sin encontrarlos y desde entonces vuelve a la orilla, llamándolos.",
+      "En Parral, Chihuahua, había quien situaba aquel llanto en el río y en los canales del pueblo. Otras familias le daban a María otra razón para llegar al agua. En unas versiones la mueve la rabia tras el abandono y en otras pesa la pobreza o el arrepentimiento. El lugar exacto depende de quién lo cuenta.",
+      "En casa, la historia podía empezar como una advertencia para que los niños volvieran antes de oscurecer. Fuera, junto al agua, bastaba oír llorar a alguien para recordarla. La banshee irlandesa también se oye antes de verse, aunque su lamento cumple otra función en su propia tradición."
     ],
     "registros": [
       {
-        "titulo": "Parral, Chihuahua · memoria de infancia",
-        "texto": "Un informante recuerda oír la leyenda allí a finales de los años cincuenta. La gente de su entorno situaba los lamentos en el río y los canales y decía haber visto figuras en la niebla.",
-        "fuente": "https://blogs.loc.gov/folklife/2021/10/growing-up-with-la-llorona/"
+        "titulo": "Marina · río Magdalena, México",
+        "texto": "En una entrevista recogida por el archivo de folclore de USC, Marina afirmó haber oído a La Llorona varias veces. Recordó una madrugada en que vio junto al río a una mujer de aspecto harapiento que lloraba. Corrió de vuelta al campamento.",
+        "fuente": "https://folklore.usc.edu/marinas-la-llorona/"
       },
       {
-        "titulo": "La madre de Camille Acosta · versión familiar",
-        "texto": "Acosta recogió la historia que le contaba su madre. En esa versión cambian el motivo y la responsabilidad de María, un ejemplo de cómo se transforma el relato de familia en familia.",
-        "fuente": "https://blogs.loc.gov/folklife/2021/10/growing-up-with-la-llorona/"
-      },
-      {
-        "titulo": "La banshee · comparación de archivo",
-        "texto": "La colección escolar de Dúchas conserva un relato en el que se oye un lamento alrededor de la casa de alguien que va a morir.",
-        "fuente": "https://www.duchas.ie/en/cbes/4921706/4892230/5188226"
+        "titulo": "Informante entrevistado en el archivo de USC · Colima",
+        "texto": "El informante dijo que de niño oyó, junto a su madre, un llanto que ambos asociaron con La Llorona. La ficha del archivo recoge su experiencia como un recuerdo personal.",
+        "fuente": "https://folklore.usc.edu/author/garc101usc-edu/"
       }
     ],
     "fotos": [
@@ -68,32 +69,28 @@ const leyendas = [
     "miru": {
       "pose": "mirando-abajo",
       "frase": "Cada pueblo le presta un río distinto. A veces eso da más miedo que saber dónde empezó."
-    }
+    },
+    "fuenteHistoria": "https://blogs.loc.gov/folklife/2021/10/growing-up-with-la-llorona/"
   },
   {
     "id": "chupacabras",
     "titulo": "El Chupacabras",
     "origen": "Puerto Rico · 1995",
     "historia": [
-      "En 1995 se difundieron noticias de animales encontrados muertos en Puerto Rico. Vecinos y periódicos empezaron a reunir ataques diferentes bajo un mismo nombre: el Chupacabras. El salto de los corrales a los telediarios convirtió el rumor local en una leyenda que empezó a viajar.",
-      "En Canóvanas, Madelyne Tolentino contó que ella y su madre habían visto una figura cerca de su casa. Describió un animal erguido con patas traseras poderosas. Ese relato dio a los titulares una silueta reconocible. Conviene distinguir a quien dijo ver una figura de quien encontró animales muertos después de un ataque.",
-      "Cuando la historia llegó a otras regiones, aparecieron descripciones de animales de cuatro patas. Benjamin Radford comparó esas versiones con la puertorriqueña y señaló que algunos ejemplares posteriores eran cánidos con sarna. El cambio de aspecto muestra cómo el nombre acabó aplicándose a sucesos muy distintos."
+      "En Puerto Rico empiezan a aparecer animales muertos en los corrales. En 1995, las noticias sobre los ataques corren de un pueblo a otro. Los vecinos intentan averiguar qué ha pasado y los periódicos le dan un nombre al supuesto responsable: el Chupacabras.",
+      "En Canóvanas, Madelyne Tolentino dice que vio algo extraño cerca de su casa. Tenía patas traseras potentes y se movía erguido. Misael Negrón habla de ojos rojos y espinas. Sus relatos dan a la gente algo concreto que imaginar la próxima vez que un corral amanece revuelto.",
+      "Cuando la historia sale de Puerto Rico, aparecen descripciones de animales que corren a cuatro patas y casi no tienen pelo. Algunos resultaron ser cánidos con sarna. El nombre ya viajaba por su cuenta, y dos personas podían decir «Chupacabras» pensando en figuras muy distintas."
     ],
     "registros": [
       {
-        "titulo": "Madelyne Tolentino · avistamiento declarado",
-        "texto": "Contó que observó con su madre una figura en la acera de su casa en Canóvanas. Su entrevista describe cómo se movía y qué recuerda de sus patas y sus ojos.",
+        "titulo": "Madelyne Tolentino · Canóvanas, 1995",
+        "texto": "Declaró que vio una figura de dos patas desde su casa. En una entrevista describió sus ojos y sus extremidades, y señaló que su madre estaba con ella.",
         "fuente": "https://pome-mag.com/wp-content/uploads/2017/01/MadelyneTolentinoInterview.pdf"
       },
       {
-        "titulo": "Francisco Soto · examen de animales",
-        "texto": "El veterinario describió al Washington Post las lesiones que encontró al examinar animales muertos. Su observación se refiere a restos, no al animal que los atacó.",
+        "titulo": "Misael Negrón · Canóvanas, 1995",
+        "texto": "Dijo al periodista Karl Ross que, desde el balcón, vio una figura de ojos rojos y espinas salir de una luz intensa en el patio. También atribuyó a esa figura un ataque contra la cabra de su familia.",
         "fuente": "https://www.washingtonpost.com/archive/politics/1995/12/26/mystery-creature-ravages-puerto-rican-livestock/b7704250-dae0-4fa3-a886-561db637b463/"
-      },
-      {
-        "titulo": "Vecinos entrevistados por AP · 1996",
-        "texto": "El reportaje contemporáneo conserva las explicaciones que circulaban entre vecinos. Sirve para oír cómo se estaba contando la historia mientras todavía era noticia.",
-        "fuente": "https://www.youtube.com/watch?v=PhDbEev8OPM"
       }
     ],
     "fotos": [
@@ -104,57 +101,37 @@ const leyendas = [
     "miru": {
       "pose": "preguntona",
       "frase": "Encontrar al animal y encontrar las huellas de un ataque son dos cosas distintas. En los titulares se juntaron enseguida."
-    }
+    },
+    "fuenteHistoria": "https://pome-mag.com/wp-content/uploads/2017/01/MadelyneTolentinoInterview.pdf"
   },
   {
     "id": "wendigo",
     "titulo": "Los dos perros del bosque",
     "origen": "Tradición ojibwe · América del Norte",
     "historia": [
-      "En una versión que recoge el Milwaukee Public Museum, una mujer viaja con dos perros. Los animales se adelantan y se enfrentan al perro del windigo. Ella todavía no ha visto a la figura que amenaza el camino, pero sus acompañantes ya han encontrado un rastro.",
-      "La escena forma parte de una tradición oral en la que el invierno, el aislamiento y el hambre tienen peso en la historia. El diccionario del pueblo ojibwe registra wiindigoo como un ser caníbal asociado al invierno. Otras comunidades y narradores conservan versiones propias.",
-      "La historia de los perros es una manera concreta de entrar en esa tradición. La viajera se entera del peligro por lo que hacen los perros antes de tenerlo delante. Ese detalle se pierde cuando todo el relato se reduce a cómo dibujar a la criatura."
+      "Una mujer va por el bosque con dos perros. En el relato ojibwe que recoge el Milwaukee Public Museum, los animales se adelantan. Cuando se topan con el perro del windigo, lo matan. La viajera sabe que algo ha cambiado en el camino antes de encontrarse cara a cara con lo que lo recorre.",
+      "En esa tradición, el peligro tiene mucho que ver con el hambre y el invierno. El diccionario del pueblo ojibwe recoge el nombre wiindigoo para un ser caníbal asociado a esa estación. Otras comunidades tienen sus propias maneras de contarlo.",
+      "En esta versión, los perros llevan la historia. Son los primeros en notar que alguien va por delante. Quien escucha sigue a la mujer por un camino donde cada paso la acerca a algo que sus perros ya conocen."
     ],
-    "registros": [
-      {
-        "titulo": "La viajera y sus perros · relato recogido",
-        "texto": "El museo reproduce una narración en la que los perros se adelantan y matan al perro del windigo. Es un episodio de tradición oral.",
-        "fuente": "https://www.mpm.org/index.php/educators/wirp/nations/ojibwe/oral-tradition"
-      },
-      {
-        "titulo": "John Manatuwaba · relato oral archivado",
-        "texto": "Una recopilación canadiense recoge otro relato atribuido a Manatuwaba, contado en el contexto de las tradiciones ojibwe de Georgian Bay.",
-        "fuente": "https://publications.gc.ca/collections/collection_2022/rncan-nrcan/NM3-2-78-1935-eng.pdf"
-      }
-    ],
+    "registros": [],
     "fotos": [
       "wendigo-1.jpg",
       "wendigo-2.jpg",
       "wendigo-3.jpg"
     ],
-    "miru": null
+    "miru": null,
+    "fuenteHistoria": "https://www.mpm.org/index.php/educators/wirp/nations/ojibwe/oral-tradition"
   },
   {
     "id": "kelpie",
     "titulo": "El pescador del río",
     "origen": "Escocia · relato de Stanley Robertson",
     "historia": [
-      "Un muchacho ve a un hombre pescando al otro lado del río. En la versión narrada por Stanley Robertson, el desconocido lo convence de acercarse hasta donde el agua es más profunda. Solo entonces el chico ve que el hombre tiene pezuñas y huye.",
-      "El pescador es un kelpie, un espíritu acuático que en otras historias aparece como caballo. En esa variante, parece dócil hasta que alguien se sube al lomo. Entonces se precipita al agua. El pescador y el caballo son dos formas distintas de contar el peligro de confiar en lo que espera junto a la orilla.",
-      "Historic Environment Scotland conserva, junto a la historia de Robertson, una canción interpretada por Kate Nicolson. La letra presenta a una muchacha que pide al caballo de agua que la deje volver a casa con su madre."
+      "Un muchacho se acerca al río y ve a un hombre pescando en la otra orilla. Hablan. El pescador consigue que entre en el agua. Al principio el chico hace pie, pero a cada paso el río va cubriéndolo un poco más.",
+      "Esa es la versión que contó Stanley Robertson. La señal que delata al pescador son sus pezuñas. El muchacho entiende con quién está hablando y consigue escapar. En otras versiones, el espíritu, conocido como kelpie, espera junto al agua con forma de caballo.",
+      "La escena acaba al dar con tierra firme. En la historia del caballo, en cambio, quien lo monta descubre demasiado tarde que no puede bajarse. Las dos versiones arrancan con algo que parece inofensivo en la otra orilla."
     ],
-    "registros": [
-      {
-        "titulo": "Stanley Robertson · narración conservada",
-        "texto": "El narrador de Aberdeen cuenta el encuentro del muchacho con el pescador y la señal que le permite reconocerlo.",
-        "fuente": "https://blog.historicenvironment.scot/2018/10/supernatural-creatures-scottish-folklore/"
-      },
-      {
-        "titulo": "Kate Nicolson · canción tradicional",
-        "texto": "La grabación de la cantante de South Uist conserva la petición de una muchacha que quiere escapar del caballo de agua.",
-        "fuente": "https://blog.historicenvironment.scot/2018/10/supernatural-creatures-scottish-folklore/"
-      }
-    ],
+    "registros": [],
     "fotos": [
       "kelpie-1.jpg",
       "kelpie-2.jpg",
@@ -163,55 +140,51 @@ const leyendas = [
     "miru": {
       "pose": "no",
       "frase": "Si un desconocido me dice que el agua no cubre, prefiero que cruce él primero."
-    }
+    },
+    "fuenteHistoria": "https://blog.historicenvironment.scot/2018/10/supernatural-creatures-scottish-folklore/"
   },
   {
     "id": "mascarilla",
     "titulo": "La mujer de la boca cortada",
     "origen": "Japón · rumor de 1979",
     "historia": [
-      "Cerca de una calle vacía, una mujer con mascarilla detiene a alguien y le pregunta si es guapa. Cuando se la quita, deja ver una boca cortada y repite la pregunta. Las versiones juegan con qué respuesta puede salvar a quien se encuentra delante de ella.",
-      "La historia de Kuchisake-onna se extendió con fuerza por Japón en 1979. La investigación folclórica recoge versiones relacionadas con Gifu, aunque su circulación llegó mucho más lejos. Entre los niños, el relato se adaptó a calles y caminos que conocían.",
-      "Como ocurre con muchas leyendas escolares, cada nueva persona puede cambiar la respuesta, el desenlace o el lugar del encuentro. La mascarilla y la pregunta mantienen reconocible la historia aunque cambie lo demás."
+      "En una calle vacía, una mujer con mascarilla te para y te pregunta si es guapa. Antes de que puedas irte, se quita la mascarilla. Tiene la boca cortada. Entonces te hace la misma pregunta otra vez.",
+      "En Japón, el rumor sobre Kuchisake-onna se extendió en 1979. Algunas investigaciones vinculan los primeros relatos a Gifu. Entre los niños circulaban respuestas que supuestamente permitían escapar y otras que dejaban a quien contestaba en peligro.",
+      "Cada grupo podía situar a la mujer en su propio camino de vuelta de la escuela. Cambiaban las calles y el desenlace. La pregunta seguía siendo la misma."
     ],
-    "registros": [
-      {
-        "titulo": "Gifu · versiones de origen",
-        "texto": "Noriko T. Reider resume la investigación sobre los relatos que vinculan el comienzo del rumor a Gifu.",
-        "fuente": "https://tile.loc.gov/storage-services/master/gdc/gdcebookspublic/20/20/71/98/76/2020719876/2020719876.pdf"
-      },
-      {
-        "titulo": "Circulación entre escolares · versiones comparadas",
-        "texto": "El folclorista Yoshiyuki Iikura explica cómo el relato se difundió y cómo cambiaron sus variantes al pasar a otros lugares.",
-        "fuente": "https://www.nippon.com/en/articles/-/15901"
-      }
-    ],
+    "registros": [],
     "fotos": [
       "mascarilla-1.jpg",
       "mascarilla-2.jpg",
       "mascarilla-3.jpg"
     ],
-    "miru": null
+    "miru": null,
+    "fuenteHistoria": "https://tile.loc.gov/storage-services/master/gdc/gdcebookspublic/20/20/71/98/76/2020719876/2020719876.pdf"
   },
   {
     "id": "compana",
     "titulo": "La Santa Compaña",
     "origen": "Galicia · tradición oral",
     "historia": [
-      "Un caminante distingue varias luces a lo lejos. Al acercarse, descubre que avanzan en fila y que el camino se ha quedado en silencio. Lo que ve, según el relato, es una procesión de ánimas que recorre la parroquia cuando los vecinos ya se han recogido.",
-      "En versiones gallegas se cuenta que al frente va una persona viva obligada a guiar a la comitiva. Otras ponen el énfasis en que las luces anuncian una muerte o en que el testigo debe apartarse del camino. La procesión cambia de detalles según quién cuenta el encuentro.",
-      "El relato funciona porque el escenario es reconocible: un cruce, un camino entre aldeas, el trayecto nocturno de vuelta a casa. Una luz lejana puede ser cualquier cosa hasta que quien la vio recuerda la historia que escuchó de pequeño."
+      "Vuelves de noche por un camino conocido y ves unas luces que avanzan juntas. Al principio parecen personas con velas. Al acercarse, la fila pasa en silencio. En los relatos de la Santa Compaña, los que caminan son las ánimas de los muertos.",
+      "En una versión, la figura que abre la marcha está viva y carga con la obligación de guiar a la procesión. En otra, las luces anuncian la muerte de alguien de la parroquia. La historia cambia de aldea en aldea, pero casi siempre encuentra al testigo en un camino que pensaba recorrer solo.",
+      "Años después, algunos entrevistados describen luces o figuras que asociaron con la Compaña. El relato se sigue contando incluso fuera de Galicia, en lugares donde la gente pone otros nombres a esas procesiones."
     ],
     "registros": [
       {
-        "titulo": "O Pardao · tradición gallega recogida",
-        "texto": "La publicación recoge la versión de una procesión nocturna de ánimas y sus vínculos con Galicia y el noroeste peninsular.",
-        "fuente": "https://emigracion.xunta.gal/files/revistas/2022/05/irmande-galega-rubi-opardao-2022.pdf"
+        "titulo": "Testigos entrevistados por Cuarto Milenio · Galicia",
+        "texto": "El programa reúne a personas que aseguran haber presenciado una procesión que interpretaron como la Santa Compaña. Los relatos se presentan en el propio reportaje.",
+        "fuente": "https://www.cuatro.com/cuarto-milenio/santa-compana-testigos-galicia_18_3275220571.html?amp=true"
       },
       {
-        "titulo": "La guía de la comitiva · variante oral",
-        "texto": "En una de las variantes, una persona viva va delante de la procesión. Es una forma distinta de contar el encuentro.",
-        "fuente": "https://emigracion.xunta.gal/files/revistas/2022/05/irmande-galega-rubi-opardao-2022.pdf"
+        "titulo": "Testigos entrevistados en Villarrubia de los Ojos",
+        "texto": "En otro reportaje, entrevistados de un pueblo de Castilla-La Mancha cuentan encuentros que relacionan con una comitiva de figuras. Uno describe a alguien que se acercaba con aspecto de monje.",
+        "fuente": "https://www.cuatro.com/television/20241110/apariciones-santa-compana-villarubia-ojos_18_013898704.html"
+      },
+      {
+        "titulo": "Entrevistados en Lagunilla · Salamanca",
+        "texto": "Vecinos dijeron a Cuarto Milenio que habían visto apariciones que asociaron con la Huestía, una tradición emparentada con la Compaña.",
+        "fuente": "https://www.cuatro.com/cuarto-milenio/huestia-procesion-animas-santa-compana_18_2635530024.html"
       }
     ],
     "fotos": [
@@ -219,57 +192,43 @@ const leyendas = [
       "compana-2.jpg",
       "compana-3.jpg"
     ],
-    "miru": null
+    "miru": null,
+    "fuenteHistoria": "https://emigracion.xunta.gal/files/revistas/2022/05/irmande-galega-rubi-opardao-2022.pdf"
   },
   {
     "id": "espejo",
     "titulo": "Bloody Mary",
     "origen": "Folclore infantil · mundo anglófono",
     "historia": [
-      "El reto comienza entre amigos. Una persona se queda sola frente al espejo de un baño oscuro. Desde fuera esperan a oír un grito o a que la puerta vuelva a abrirse. Quien está dentro, mientras tanto, intenta distinguir una cara entre las sombras.",
-      "El relato circuló como un juego de miedo, con cambios en el nombre que se pronuncia y en lo que dicen ver en el cristal. Los estudios sobre folclore infantil recogen versiones en escuelas y hogares, transmitidas entre participantes y espectadores.",
-      "La escena se termina de construir al salir del baño. Un reflejo confuso, el ruido de alguien al otro lado o la reacción de quien se asustó acaban formando parte de lo que el siguiente grupo cuenta."
+      "Cierras la puerta del baño y los demás se quedan fuera. El espejo apenas recoge la luz que entra por debajo de la puerta. Dices el nombre que te han dicho que digas y esperas. El silencio hace que te acerques un poco más al cristal.",
+      "Bloody Mary circuló como un reto entre amigos. Los nombres, los desenlaces y la cara que alguien asegura haber visto cambian según el grupo. Para cuando se abre la puerta, quienes estaban fuera ya quieren saber si el grito fue de miedo o si había algo en el espejo.",
+      "La historia vuelve a empezar cada vez que otro grupo se atreve a entrar. A menudo, quienes se quedan fuera reconstruyen lo ocurrido antes incluso de que el participante consiga explicarlo."
     ],
     "registros": [
       {
-        "titulo": "Versiones recopiladas por Alan Dundes",
-        "texto": "El análisis folclórico recoge distintos nombres y desenlaces del juego del espejo, a partir de relatos ya en circulación.",
-        "fuente": "https://discovery.ucl.ac.uk/id/eprint/10206508/1/Playing-the-Archive.pdf"
-      },
-      {
-        "titulo": "Escolares de Sheffield · juego emparentado",
-        "texto": "La investigadora Julia Bishop recuerda que unos escolares contaron que había un fantasma en los aseos. Algunos fueron al baño y volvieron diciendo que habían visto algo. Es una práctica relacionada que el estudio distingue de Bloody Mary.",
-        "fuente": "https://discovery.ucl.ac.uk/id/eprint/10206508/1/Playing-the-Archive.pdf"
+        "titulo": "Oyente anónimo · Believing the Bizarre",
+        "texto": "En un relato enviado al programa, una persona dijo que vio por un instante una cara que le pareció de mujer al acercarse a un baño, tiempo después de haber jugado a Bloody Mary. El programa publica su declaración como relato de un oyente.",
+        "fuente": "https://believingthebizarre.com/the-urban-legend-of-bloody-mary/"
       }
     ],
     "fotos": [
-      "espejo-1.jpg",
       "espejo-2.jpg",
+      "espejo-1.jpg",
       "espejo-3.jpg"
     ],
-    "miru": null
+    "miru": null,
+    "fuenteHistoria": "https://discovery.ucl.ac.uk/id/eprint/10206508/1/Playing-the-Archive.pdf"
   },
   {
     "id": "hanako",
     "titulo": "La última puerta del baño",
     "origen": "Japón · leyenda escolar",
     "historia": [
-      "El pasillo está vacío y la escuela casi ha cerrado. En el baño hay una puerta cerrada desde dentro. En algunas versiones, quien llama pregunta si está Hanako y oye una respuesta. Lo que ocurre al abrirla depende de quién cuente la historia.",
-      "Hanako-san es una figura del folclore escolar japonés. Los niños cambian de planta, de baño y de desenlace al contarla. El resultado es una historia que parece haber ocurrido en el edificio que conoce quien la escucha.",
-      "Como Bloody Mary, el relato puede salir de la conversación y convertirse en reto. Y cuando un grupo vuelve corriendo del baño, el susto de unos sirve para convencer a los demás de que había algo detrás de la puerta."
+      "La escuela está casi vacía. En el baño, una puerta sigue cerrada. Quien se ha quedado en el pasillo espera oír el pestillo. En algunas versiones, alguien pregunta por Hanako y una voz responde desde dentro.",
+      "Los relatos de Hanako-san circulan entre escolares en Japón. A veces la puerta está en otro piso. A veces quien la abre no consigue ver nada. Quien cuenta la historia suele señalar el baño que todos conocen.",
+      "El susto se pasa de un grupo a otro. Basta que alguien se retrase un poco al volver del baño para que los que esperan empiecen a construir su propia versión."
     ],
-    "registros": [
-      {
-        "titulo": "Linda Spetter · folclore escolar estudiado",
-        "texto": "El estudio de 2004 citado en Haunting Experiences recoge a Hanako como una aparición temida entre escolares japoneses.",
-        "fuente": "https://read.upcolorado.com/read/haunting-experiences-ghosts-in-contemporary-folklore/section/44f30611-e723-4750-b20d-dc9a51ad470a"
-      },
-      {
-        "titulo": "Elizabeth Kenny · otra lectura de la leyenda",
-        "texto": "El mismo volumen recoge una interpretación de Kenny sobre por qué los relatos usan un baño escolar. Su aportación se refiere a la transmisión de la historia.",
-        "fuente": "https://read.upcolorado.com/read/haunting-experiences-ghosts-in-contemporary-folklore/section/44f30611-e723-4750-b20d-dc9a51ad470a"
-      }
-    ],
+    "registros": [],
     "fotos": [
       "hanako-1.jpg",
       "hanako-2.jpg",
@@ -278,16 +237,17 @@ const leyendas = [
     "miru": {
       "pose": "no",
       "frase": "Yo esperaría a que alguien saliera de la última puerta. Y si responde sin abrir, me voy."
-    }
+    },
+    "fuenteHistoria": "https://read.upcolorado.com/read/haunting-experiences-ghosts-in-contemporary-folklore/section/44f30611-e723-4750-b20d-dc9a51ad470a"
   },
   {
     "id": "point-pleasant",
     "titulo": "Los ojos de Point Pleasant",
     "origen": "Virginia Occidental · noviembre de 1966",
     "historia": [
-      "La noche del 15 de noviembre de 1966, dos parejas conducen cerca de una antigua zona industrial de Point Pleasant. Aseguran haber visto una figura alada con ojos rojos. Según cuentan, la figura siguió el coche y el encuentro acabó en la prensa local.",
-      "En los días siguientes, otras personas llamaron o hablaron con periodistas para contar que habían visto algo parecido, aunque las descripciones no coincidían del todo. El nombre Mothman acabó reuniendo esos encuentros y dio una forma reconocible a la historia.",
-      "La estatua y las versiones posteriores fijaron la silueta que mucha gente conoce hoy. Los testimonios son más variados: algunos hablan de un ave enorme y otros de algo más humano. Esa diferencia importa cuando vuelves a las fechas y lees lo que se dijo en cada caso."
+      "La noche del 15 de noviembre de 1966, dos parejas conducen cerca de una antigua zona industrial de Point Pleasant. Los faros iluminan algo con ojos rojos. Al contar lo ocurrido después, los cuatro insisten en que parece alado y que ha seguido al coche.",
+      "La prensa local publica su relato. En los días siguientes, otros conductores y vecinos dicen haber visto figuras parecidas. Uno cree primero que se trata de un helicóptero. Otros hablan de un pájaro enorme o de algo con forma humana.",
+      "La figura acaba recibiendo un nombre, Mothman. Con los años se vuelve fácil reconocerla en dibujos y estatuas. Al volver a los testimonios de esos primeros días, lo llamativo es cuánto cambia el aspecto de un encuentro a otro."
     ],
     "registros": [
       {
@@ -307,34 +267,40 @@ const leyendas = [
       }
     ],
     "fotos": [
-      "point-pleasant-1.jpg",
       "point-pleasant-2.jpg",
+      "point-pleasant-1.jpg",
       "point-pleasant-3.jpg"
     ],
     "miru": {
       "pose": "sorprendida",
       "frase": "De todos los detalles, el que acabó en la estatua fueron los ojos."
-    }
+    },
+    "fuenteHistoria": "https://www.forteanarchives.org/datasheets-1966-1967/"
   },
   {
     "id": "bungay",
     "titulo": "La tormenta de Bungay",
     "origen": "Suffolk, Inglaterra · panfleto de 1577",
     "historia": [
-      "Una tormenta sorprende a la congregación dentro de la iglesia de Bungay. Según el relato impreso después, entre el estruendo aparece una figura oscura parecida a un perro que atraviesa el lugar. El miedo del relato viene de que ocurre a plena vista, en un sitio donde la gente se había refugiado.",
-      "Abraham Fleming publicó un panfleto sobre lo que se decía que había pasado en Bungay y en la cercana Blythburgh. El mismo texto interpreta los sucesos con el lenguaje religioso de su época. Con el tiempo, la aparición se asoció con Black Shuck, el perro espectral del folclore del este de Inglaterra.",
-      "La tormenta y el panfleto permiten seguir la historia en dos planos. Por un lado está el episodio contado en el siglo XVI. Por otro, la leyenda que lo conecta con otros perros negros vistos en caminos e iglesias."
+      "La tormenta cae sobre Bungay mientras la congregación está dentro de la iglesia. En el relato que se imprimió en 1577, un animal oscuro cruza el lugar entre el ruido y la confusión. Quienes han acudido a refugiarse se encuentran con el peligro dentro.",
+      "Abraham Fleming contó el episodio en un panfleto que recoge también lo que se decía de Blythburgh, una localidad cercana. Con el tiempo, ambos lugares quedaron asociados a Black Shuck, un perro espectral que aparece en leyendas del este de Inglaterra.",
+      "En testimonios posteriores, el perro reaparece lejos de las iglesias. Un motorista dice que le siguió por una carretera. Una adolescente asegura haber visto una figura pasar junto a unos coches. Los detalles cambian con el paisaje."
     ],
     "registros": [
       {
-        "titulo": "Bungay · episodio narrado en el panfleto",
-        "texto": "Fleming describe la aparición durante la tormenta. El texto conserva lo que se imprimió en 1577; su autor no se presenta aquí como testigo ocular verificado.",
-        "fuente": "https://ota.bodleian.ox.ac.uk/repository/xmlui/handle/20.500.12024/A00943"
+        "titulo": "Keith Flory · Woodbridge, 1973",
+        "texto": "Años después del encuentro, Flory contó que un perro negro de gran tamaño le siguió mientras conducía su moto. El investigador Matt Salusbury publicó un resumen de su relato.",
+        "fuente": "https://mattsalusbury.blogspot.com/2021/12/?m=0"
       },
       {
-        "titulo": "Blythburgh · segundo episodio del mismo texto",
-        "texto": "El panfleto también sitúa una aparición en la iglesia de Blythburgh. Es un segundo relato de la misma publicación.",
-        "fuente": "https://ota.bodleian.ox.ac.uk/repository/xmlui/handle/20.500.12024/A00943"
+        "titulo": "Alice · Suffolk",
+        "texto": "El boletín de la Aylsham Local History Society recoge el relato de una adolescente de catorce años. Afirmó ver, mientras viajaba con su familia, una figura negra grande que adelantaba a los coches.",
+        "fuente": "https://aylshamhistory.org/wp-content/uploads/2023/04/Vol11.2.pdf"
+      },
+      {
+        "titulo": "Graham Grant · Gorleston, 1972",
+        "texto": "El guardacostas declaró haber visto un perro negro en la playa. El archivo de Black Shuck remite a una noticia de abril de 1972.",
+        "fuente": "https://blackshuck.org/archive"
       }
     ],
     "fotos": [
@@ -342,27 +308,33 @@ const leyendas = [
       "bungay-2.jpg",
       "bungay-3.jpg"
     ],
-    "miru": null
+    "miru": null,
+    "fuenteHistoria": "https://ota.bodleian.ox.ac.uk/repository/xmlui/handle/20.500.12024/A00943"
   },
   {
     "id": "slenderman",
     "titulo": "Slender Man",
     "origen": "Internet · creepypasta nacida en 2009",
     "historia": [
-      "En junio de 2009, el foro Something Awful propuso un concurso de imágenes paranormales. Eric Knudsen, con el alias Victor Surge, publicó dos fotografías manipuladas con una figura alta y sin rostro en el fondo. Las acompañó de pies de foto escritos como si documentaran un caso real.",
-      "Otros participantes añadieron imágenes, historias y supuestos documentos. La figura empezó a aparecer en bosques, parques o fotografías familiares inventadas. En ese momento, la historia dejó de depender de una sola publicación: cada aportación podía fingir que había encontrado otra pista.",
-      "Las creepypastas son historias de terror que circulan y se comparten en internet. Slender Man muestra cómo pueden crecer: un hilo de foro pasa a vídeos de metraje encontrado como Marble Hornets y distintos autores imaginan versiones. Sus supuestos testimonios forman parte de la ficción."
+      "En junio de 2009, alguien abre un hilo en Something Awful para que los usuarios inventen imágenes paranormales. Eric Knudsen, que firma como Victor Surge, sube dos fotografías manipuladas. Si miras al fondo, entre los árboles y detrás de los niños, distingues una figura demasiado alta y sin cara.",
+      "Otros usuarios empiezan a añadir sus propias fotos, expedientes y grabaciones. El juego consiste en presentar cada aportación como si alguien acabara de encontrarla. Así creció esta creepypasta, una historia de terror que se comparte y se transforma en internet.",
+      "En 2014, la ficción apareció en la investigación de una agresión real en Waukesha, Wisconsin. Morgan Geyser y Anissa Weier atacaron a su compañera Payton Leutner. Payton sobrevivió. Las declaraciones del caso muestran lo que dijeron sobre el personaje y cómo vivió ella la agresión."
     ],
     "registros": [
       {
-        "titulo": "Victor Surge · publicación original ficticia",
-        "texto": "Las dos imágenes de Knudsen llevan pies de foto que imitan la voz de un expediente. El origen del personaje está documentado en el concurso del foro.",
-        "fuente": "https://scholarworks.iu.edu/journals/index.php/cl/article/download/35099/38290/94528"
+        "titulo": "Payton Leutner · entrevista de 2019",
+        "texto": "Leutner habló públicamente con ABC News sobre el ataque que sobrevivió y sobre cómo lo recuerda años después. Su testimonio trata de la agresión.",
+        "fuente": "https://abcnews.com/US/slender-man-stabbing-victim-speaks-publicly-time-situation/story?id=66268385"
       },
       {
-        "titulo": "Marble Hornets · metraje encontrado ficticio",
-        "texto": "La serie empezó en 2009 y desarrolló su propia versión a través de grabaciones presentadas como hallazgos.",
-        "fuente": "https://scholarworks.iu.edu/journals/index.php/cl/article/download/35099/38290/94528"
+        "titulo": "Anissa Weier · declaración recogida en el expediente",
+        "texto": "Según la resolución de apelación, Weier contó a una detective que Geyser le había dicho que tenían que convertirse en servidoras de Slender Man. Es una declaración sobre lo que afirmaron creer, dentro de un caso de agresión real.",
+        "fuente": "https://www.courthousenews.com/wp-content/uploads/2020/08/18ap1897-geyser-slenderman-appeals-court-decision-8.12.20.pdf"
+      },
+      {
+        "titulo": "Morgan Geyser · entrevista policial",
+        "texto": "Geyser dio a la policía una versión distinta de la de Weier sobre quién le había dicho que tenían que actuar. Su declaración trata de la agresión y del papel que atribuían al personaje ficticio.",
+        "fuente": "https://abcnews.com/US/investigators-slender-man-case-discuss-chilling-interviews-12/story?id=66320806"
       }
     ],
     "fotos": [
@@ -373,22 +345,36 @@ const leyendas = [
     "miru": {
       "pose": "preguntona",
       "frase": "La foto estaba trucada. Lo raro es lo fácil que es seguir mirando el fondo en busca de algo."
-    }
+    },
+    "fuenteHistoria": "https://scholarworks.iu.edu/journals/index.php/cl/article/download/35099/38290/94528"
   }
 ] as const
 const carpeta = import.meta.env.BASE_URL + 'LeyendasUrbanas/'
 const carpetaMiru = import.meta.env.BASE_URL + 'Miru/'
 const activa = ref<(typeof leyendas)[number]>(leyendas[0])
-const titulo = ref<HTMLHeadingElement | null>(null)
+const candidatas = leyendas.filter(leyenda => leyenda.miru)
+const apariciones = new Set<string>()
+while (apariciones.size < 4 && candidatas.length) {
+  const [elegida] = candidatas.splice(Math.floor(Math.random() * candidatas.length), 1)
+  if (elegida) apariciones.add(elegida.id)
+}
+const mostrarMiru = computed(() => apariciones.has(activa.value.id))
 const indiceFoto = ref(0)
-const foto = computed(() => activa.value.fotos[indiceFoto.value] ?? activa.value.fotos[0])
+const reproduccion = ref(false)
 
-async function abrir(leyenda: (typeof leyendas)[number]) {
+onMounted(() => {
+  reproduccion.value = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+})
+
+watch([activa, reproduccion], ([, reproducir], _, onCleanup) => {
+  if (!reproducir) return
+  const intervalo = window.setInterval(() => moverFoto(1), 5000)
+  onCleanup(() => window.clearInterval(intervalo))
+})
+
+function abrir(leyenda: (typeof leyendas)[number]) {
   activa.value = leyenda
   indiceFoto.value = 0
-  await nextTick()
-  titulo.value?.focus({ preventScroll: true })
-  titulo.value?.scrollIntoView({ block: 'nearest' })
 }
 
 function moverFoto(paso: number) {
@@ -400,58 +386,71 @@ function moverFoto(paso: number) {
 <template>
   <main class="cronica">
     <div class="volumen">
-      <RouterLink to="/">← Volver a la madriguera</RouterLink>
-      <header>
+      <header class="cabecera">
+        <RouterLink class="volver" to="/">← Volver a la madriguera</RouterLink>
         <h1>Leyendas urbanas</h1>
         <p>Doce historias que cambiaron cada vez que alguien volvió a contarlas, desde una pasajera que desaparece hasta una figura escondida en una fotografía de internet.</p>
       </header>
 
-      <div class="lectura">
-        <nav class="indice" aria-label="Elegir una leyenda">
-          <button v-for="leyenda in leyendas" :key="leyenda.id" type="button"
-            :aria-pressed="activa.id === leyenda.id" aria-controls="leyenda-abierta" @click="abrir(leyenda)">
-            {{ leyenda.titulo }}
-          </button>
-        </nav>
+      <nav class="selector" aria-label="Elegir una leyenda">
+        <button v-for="leyenda in leyendas" :key="leyenda.id" type="button"
+          :aria-pressed="activa.id === leyenda.id" aria-controls="ficha-leyenda" @click="abrir(leyenda)">
+          <span>{{ leyenda.titulo }}</span>
+        </button>
+      </nav>
 
-        <article id="leyenda-abierta" class="relato">
-          <header class="ficha-titulo">
+      <article id="ficha-leyenda" class="lectura" aria-labelledby="titulo-leyenda">
+        <div class="composicion">
+          <header class="titulo-leyenda">
             <p class="origen">{{ activa.origen }}</p>
-            <h2 ref="titulo" tabindex="-1">{{ activa.titulo }}</h2>
+            <h2 id="titulo-leyenda" aria-live="polite">{{ activa.titulo }}</h2>
           </header>
-
-          <div class="apertura">
-            <section class="historia" aria-label="La historia">
-              <p v-for="parrafo in activa.historia" :key="parrafo">{{ parrafo }}</p>
-            </section>
-
-            <figure class="galeria">
-              <div class="visor">
-                <img :key="foto" :src="carpeta + foto" :alt="'Imagen de ambiente para ' + activa.titulo" />
-              </div>
-              <figcaption class="mandos">
-                <button type="button" aria-label="Foto anterior" @click="moverFoto(-1)">←</button>
-                <span aria-live="polite">{{ indiceFoto + 1 }} / {{ activa.fotos.length }}</span>
-                <button type="button" aria-label="Foto siguiente" @click="moverFoto(1)">→</button>
-              </figcaption>
-            </figure>
-          </div>
-
-          <aside v-if="activa.miru" class="miru" aria-label="Comentario de Miru">
-            <img :src="carpetaMiru + 'miru-' + activa.miru.pose + '.png'" alt="" loading="lazy" />
-            <p><strong>Miru</strong>{{ activa.miru.frase }}</p>
-          </aside>
-
-          <section class="archivo" aria-labelledby="archivo-titulo">
-            <h3 id="archivo-titulo">{{ activa.id === 'slenderman' ? 'Cómo creció la ficción' : 'Testimonios y versiones recogidas' }}</h3>
-            <article v-for="registro in activa.registros" :key="registro.titulo" class="registro">
-              <h4>{{ registro.titulo }}</h4>
-              <p>{{ registro.texto }}</p>
-              <a :href="registro.fuente">Consultar la fuente ↗</a>
-            </article>
+          <figure class="galeria">
+            <div class="foto">
+              <img
+                v-for="(imagen, indice) in activa.fotos"
+                :key="imagen"
+                :class="{
+                  visible: indice === indiceFoto,
+                  'enfoque-chupacabras': imagen === 'chupacabras-1.jpg',
+                  'enfoque-bungay': imagen === 'bungay-1.jpg',
+                }"
+                :src="carpeta + imagen"
+                :alt="indice === indiceFoto ? 'Imagen de ambiente para ' + activa.titulo : ''"
+                :aria-hidden="indice !== indiceFoto"
+                decoding="async"
+              />
+            </div>
+            <figcaption class="mandos">
+              <button type="button" @click="reproduccion = !reproduccion">
+                {{ reproduccion ? 'Pausar fotos' : 'Reproducir fotos' }}
+              </button>
+            </figcaption>
+          </figure>
+          <section class="historia" aria-label="La historia">
+            <h3>La historia</h3>
+            <p v-for="parrafo in activa.historia" :key="parrafo">{{ parrafo }}</p>
+            <a :href="activa.fuenteHistoria">Fuente del relato ↗</a>
           </section>
-        </article>
-      </div>
+        </div>
+
+        <aside v-if="mostrarMiru && activa.miru" class="miru" aria-label="Comentario de Miru">
+          <img :src="carpetaMiru + 'miru-' + activa.miru.pose + '.png'" alt="" loading="lazy" />
+          <p><strong>Miru</strong>{{ activa.miru.frase }}</p>
+        </aside>
+
+        <section class="archivo" aria-labelledby="archivo-titulo">
+          <h2 id="archivo-titulo">{{ activa.id === 'slenderman' ? 'El caso de Waukesha' : 'Testimonios de experiencias' }}</h2>
+          <p v-if="!activa.registros.length" class="nota">
+            Las fuentes de esta ficha recogen la tradición oral y cómo circuló la historia. Falta una declaración personal atribuible a un testigo.
+          </p>
+          <article v-for="registro in activa.registros" :key="registro.titulo" class="registro">
+            <h3>{{ registro.titulo }}</h3>
+            <p>{{ registro.texto }}</p>
+            <a :href="registro.fuente">Consultar la fuente ↗</a>
+          </article>
+        </section>
+      </article>
     </div>
   </main>
 </template>
@@ -459,57 +458,140 @@ function moverFoto(paso: number) {
 <style scoped>
 .cronica {
   min-height: 100vh;
-  padding: clamp(1rem, 4vw, 4rem);
-  color: #f1dae5;
-  background: radial-gradient(ellipse at 50% 0%, #4d2338, transparent 32rem), #140e15;
+  padding: clamp(.9rem, 3vw, 3rem);
+  color: #f2dde4;
+  background: radial-gradient(ellipse at 55% 0%, #3b1c26, transparent 34rem), #120c11;
 }
-.volumen { max-width: 78rem; margin-inline: auto; }
-a { color: #ffc4df; text-decoration: underline; text-underline-offset: .2em; }
-header { padding: clamp(1.75rem, 5vw, 4.5rem) 0 1.75rem; border-bottom: 4px double #b57999; }
-h1, h2, h3 { font-family: Georgia, serif; }
-h1 { color: #ffd3e6; font-size: clamp(2.6rem, 8vw, 7rem); font-weight: bold; line-height: .95; letter-spacing: -.05em; }
-header p { max-width: 58ch; margin-top: 1rem; line-height: 1.55; }
-.lectura { display: grid; align-items: start; gap: 1.2rem; margin-top: 1.5rem; }
-.indice { display: grid; gap: .35rem; }
-.indice button { min-height: 2.7rem; padding: .5rem .75rem; border-left: 2px solid #74455f; background: #241423; color: #f4d4e5; text-align: left; cursor: pointer; }
-.indice button[aria-pressed='true'] { border-color: #ffb8d9; background: #4b2840; color: #fff0f6; }
-:focus-visible { outline: 2px solid #ffe1ee; outline-offset: 3px; }
-.relato { position: relative; isolation: isolate; overflow: hidden; min-height: 25rem; border: 1px solid #75465f; background: radial-gradient(ellipse at 85% 0%, #472234, transparent 62%), #1f1422; }
-.curva { background: repeating-linear-gradient(160deg, #ffbed20b 0 1px, transparent 1px 19px), radial-gradient(ellipse at 95% 35%, #4b2336, transparent 53%), #1a1320; }
-.mascarilla { background: radial-gradient(ellipse at 100% 10%, #7b314750, transparent 56%), #211420; }
-.compana { background: radial-gradient(ellipse at 100% 90%, #75523f50, transparent 65%), #1b131d; }
-.texto { max-width: 48rem; padding: clamp(1rem, 4vw, 3rem); }
-.origen { color: #f3a9cb; font-size: .85rem; }
-h2 { margin-top: .35rem; color: #ffe1ee; font-size: clamp(2rem, 5vw, 4.3rem); font-weight: bold; line-height: 1.03; }
-h3 { margin-top: .65rem; color: #f5b7d3; font-size: 1.35rem; font-style: italic; }
-.texto > p:not(.origen) { max-width: 56ch; margin-top: 1rem; line-height: 1.65; }
-.escena { font-size: 1.12rem; }
-.texto a { display: block; width: fit-content; margin-top: 1rem; font-size: .86rem; }
-@media (min-width: 850px) {
-  .lectura { grid-template-columns: minmax(12rem, 15rem) minmax(0, 1fr); }
-
+.volumen { max-width: 88rem; margin-inline: auto; }
+a { color: #ffbdd9; text-decoration: underline; text-underline-offset: .2em; }
+:focus-visible { outline: 2px solid #ffd6e7; outline-offset: 3px; }
+.cabecera { padding-bottom: 1rem; }
+.cabecera h1 {
+  margin-top: .9rem;
+  color: #ffdcdf;
+  font: bold clamp(2rem, 5vw, 4.1rem)/1 Georgia, serif;
+  letter-spacing: -.035em;
 }
+.cabecera p { margin-top: .6rem; width: 100%; line-height: 1.6; }
 
-header.ficha-titulo { padding: 0; border: 0; }
-.relato { display: block; padding: clamp(1rem, 3vw, 2.4rem); }
-.apertura { display: grid; gap: 1.2rem; margin-top: 1.3rem; align-items: start; }
-.historia p, .registro p { margin-top: .65rem; max-width: 72ch; line-height: 1.7; }
+.selector { display: flex; flex-wrap: wrap; gap: .4rem; margin-block: 1rem 1.4rem; }
+.selector button { border: 1px solid #976680; padding: .5rem .7rem; background: #281522; color: #ffe1ee; cursor: pointer; }
+.selector button:hover, .selector button[aria-pressed='true'] { background: #523044; border-color: #ffbcd8; }
+.lectura { border: 1px solid #926079; border-radius: 1.1rem; padding: clamp(.85rem, 2.8vw, 2.5rem); background: #211421; }
+.composicion { display: grid; align-items: start; gap: clamp(1rem, 2vw, 2rem); }
+.origen { color: #f1aacb; font-size: .85rem; }
+.titulo-leyenda h2 { margin-top: .45rem; color: #fff0e9; font: 900 clamp(2rem, 4vw, 4.8rem)/.95 'Arial Narrow', Impact, sans-serif; text-transform: uppercase;  }
 .galeria { min-width: 0; margin: 0; }
-.visor { position: relative; aspect-ratio: 4 / 3; background: #140d17; border: 1px solid #684158; }
-.visor img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
-.mandos { display: flex; align-items: center; justify-content: space-between; gap: .6rem; margin-top: .45rem; color: #f7b8d6; }
-.mandos button { min-width: 2.75rem; min-height: 2.75rem; border: 1px solid #a76b8a; background: #311b2d; color: #ffe4f1; cursor: pointer; }
-.mandos button:hover { background: #57314b; }
-.archivo { margin-top: 1.7rem; padding-top: 1.25rem; border-top: 4px double #98647f; }
-.registro { padding: 1rem 0; border-bottom: 1px solid #71465f; }
-.registro h4 { color: #ffc9df; font-weight: 700; }
-.registro a { display: inline-block; margin-top: .55rem; font-size: .85rem; }
-.miru { display: flex; align-items: start; justify-content: flex-end; gap: .6rem; margin-top: 1rem; }
+.foto { position: relative; aspect-ratio: 4 / 5; border-radius: .8rem; overflow: hidden; background: #130c15; }
+.foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.mandos { display: flex; align-items: center; justify-content: space-between; gap: .55rem; margin-top: .55rem; }
+.mandos button { min-width: 2.75rem; min-height: 2.75rem; border: 1px solid #a06d89; border-radius: .35rem; color: #ffe4ec; background: #331c2c; cursor: pointer; }
+.mandos button:hover { background: #63364d; }
+.historia h3, .archivo h2 { color: #ffcede; font: bold clamp(1.3rem, 2.6vw, 2rem) Georgia, serif; }
+.lectura p { line-height: 1.7; }
+.historia p, .registro p, .nota { margin-top: .65rem; }
+.historia a, .registro a { display: inline-block; margin-top: .65rem; font-size: .87rem; }
+.registro p, .nota { max-width: 72ch; }
+.archivo { margin-top: 1.7rem; padding-top: 1.2rem; border-top: 1px solid #805269; }
+.registro { margin-top: .8rem; padding-block: .75rem; border-bottom: 1px solid #6c435a; }
+.registro h3 { color: #ffc2d7; font-weight: 700; }
+.miru { display: flex; justify-content: flex-end; align-items: flex-start; gap: .65rem; margin-top: 1rem; }
 .miru img { width: clamp(5rem, 12vw, 9rem); flex: 0 0 auto; }
-.miru p { position: relative; margin-top: 1rem; max-width: 29ch; padding: .65rem .8rem; border: 1px solid #b9819f; border-radius: .8rem; background: #462639; line-height: 1.4; }
-.miru p::before { position: absolute; top: 1rem; left: -.35rem; width: .6rem; height: .6rem; border-left: 1px solid #b9819f; border-bottom: 1px solid #b9819f; background: #462639; transform: rotate(45deg); content: ''; }
-.miru strong { display: block; color: #ffbdda; }
-@media (min-width: 1024px) {
-  .apertura { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); }
+.miru p { position: relative; max-width: 29ch; padding: .6rem .8rem; border: 1px solid #ad7696; border-radius: .75rem; background: #422639; line-height: 1.45; }
+.miru p::before { position: absolute; top: .75rem; left: -.35rem; width: .6rem; height: .6rem; border-left: 1px solid #ad7696; border-bottom: 1px solid #ad7696; background: #422639; transform: rotate(45deg); content: ''; }
+.miru strong { display: block; color: #ffbdd7; }
+@media (min-width: 1080px) {
+  .composicion { grid-template-columns: minmax(0, .8fr) minmax(0, 1.15fr) minmax(0, 1.36fr); }
+}
+@media (min-width: 680px) and (max-width: 1079px) {
+  .composicion { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); }
+  .titulo-leyenda { grid-column: 1 / -1; }
+}
+
+.cabecera { text-align: center; }
+.cabecera p { width: 100%; max-width: none; margin-inline: auto; text-align: center; }
+.selector { justify-content: center; }
+.selector button { border: 0; border-bottom: 1px solid transparent; background: transparent; }
+.selector button:hover, .selector button[aria-pressed='true'] {
+  background: transparent;
+  color: #ffc6df;
+  border-color: currentColor;
+}
+.lectura { border: 0; border-radius: 0; background: transparent; padding-inline: 0; }
+.titulo-leyenda h2 {
+  font-size: clamp(1.85rem, 3.05vw, 3.4rem);
+  line-height: 1.02;
+  letter-spacing: -.022em;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+  text-wrap: balance;
+  text-transform: none;
+}
+.foto { border: 0; border-radius: 0; background: transparent; overflow: visible; isolation: isolate; }
+.foto img {
+  object-fit: cover;
+  opacity: 0;
+  mask-image: radial-gradient(ellipse 67% 65% at center, #000 32%, #000e 49%, #0008 65%, transparent 84%);
+  transition: opacity 800ms ease;
+}
+.foto img.visible { opacity: .96; }
+.mandos { justify-content: center; margin-top: 0; }
+.mandos button {
+  width: auto;
+  min-height: 0;
+  padding: .35rem .5rem;
+  border: 0;
+  color: #edb7d1;
+  background: transparent;
+  font-size: .8rem;
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+.mandos button:hover { color: #ffecf5; background: transparent; }
+@media (min-width: 1080px) {
+  .composicion { grid-template-columns: minmax(13rem, .9fr) minmax(0, 1.2fr) minmax(0, 1.4fr); }
+}
+@media (max-width: 1079px) { .titulo-leyenda { text-align: center; } }
+@media (max-width: 679px) {
+  .foto { width: min(100%, 25rem); margin-inline: auto; }
+}
+@media (prefers-reduced-motion: reduce) { .foto img { transition: none; } }
+
+.selector {
+  justify-content: center;
+  gap: .55rem;
+}
+.selector button {
+  min-height: 2.65rem;
+  border: 1px solid #a46485;
+  border-radius: .45rem;
+  padding: .45rem .75rem;
+  background: #3a2032;
+  color: #f2c5d9;
+  font: 650 .86rem/1.25 system-ui, sans-serif;
+  text-align: center;
+}
+.selector button:hover {
+  border-color: #f0a9c9;
+  background: #583249;
+  color: #ffe1ed;
+}
+.selector button[aria-pressed='true'] {
+  border-color: #ffcee2;
+  background: #efb5ce;
+  color: #351523;
+}
+.titulo-leyenda, .historia { text-align: center; }
+.titulo-leyenda h2, .historia p { margin-inline: auto; }
+.historia p { max-width: 52ch; }
+@media (min-width: 1080px) {
+  .composicion { align-items: center; }
+}
+
+.foto img.enfoque-chupacabras { object-position: 32% 50%; }
+.foto img.enfoque-bungay {
+  object-position: left center;
+  mask-image: radial-gradient(ellipse 62% 67% at 44% 46%, #000 27%, #000e 43%, #0007 62%, transparent 87%);
 }
 </style>
