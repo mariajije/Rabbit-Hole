@@ -31,6 +31,11 @@ export const router = createRouter({
       component: () => import('../pages/leyendas-urbanas/LeyendasUrbanas.vue'),
     },
     {
+      path: '/senales-perdidas',
+      name: 'senales-perdidas',
+      component: () => import('../pages/senales-perdidas/SenalesPerdidas.vue'),
+    },
+    {
       path: '/:patchMatch(.*)',
       redirect: '/'
     }

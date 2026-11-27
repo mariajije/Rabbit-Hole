@@ -3,6 +3,7 @@ import { computed, nextTick, ref } from 'vue'
 import BackroomsDetalle from './BackroomsDetalle.vue'
 import LugaresMalditosDetalle from './LugaresMalditosDetalle.vue'
 import LeyendasUrbanasDetalle from './LeyendasUrbanasDetalle.vue'
+import SenalesPerdidasDetalle from './SenalesPerdidasDetalle.vue'
 const miruSaludando = `${import.meta.env.BASE_URL}Miru/miru-saludando.png`
 
 const miruEstrella = import.meta.env.BASE_URL + 'Miru/miru-estrella.png'
@@ -26,7 +27,7 @@ const entradas = [
   {
     "titulo": "Señales perdidas",
     "categoria": "Misterios de internet",
-    "descripcion": "Emisiones extrañas, webs perdidas, cintas y llamadas que alguien dejó grabadas."
+    "descripcion": "Una voz llama de madrugada y la emisión se corta. Una cámara capta una piedra que cae del cielo. En la onda corta, un zumbido deja paso a mensajes que muy poca gente puede interpretar. Miru ha reunido estas grabaciones para seguir el rastro de lo que alguien escuchó o encontró."
   },
   {
     "titulo": "Maldiciones",
@@ -110,7 +111,7 @@ const entradaActiva = computed(() => entradas[indiceActivo.value] ?? entradas[0]
           </div>
 
           <article id="entrada-activa" :key="entradaActiva.titulo" class="ficha">
-            <div class="ficha-contenido" :class="{ 'con-relato': ['Los Backrooms', 'Lugares malditos', 'Leyendas urbanas'].includes(entradaActiva.titulo) }">
+            <div class="ficha-contenido" :class="{ 'con-relato': ['Los Backrooms', 'Lugares malditos', 'Leyendas urbanas', 'Señales perdidas'].includes(entradaActiva.titulo) }">
               <div class="ficha-texto">
                 <p class="categoria">{{ entradaActiva.categoria }}</p>
                 <h3 aria-live="polite">{{ entradaActiva.titulo }}</h3>
@@ -123,6 +124,7 @@ const entradaActiva = computed(() => entradas[indiceActivo.value] ?? entradas[0]
               />
               <LugaresMalditosDetalle v-else-if="entradaActiva.titulo === 'Lugares malditos'" class="detalle" />
               <LeyendasUrbanasDetalle v-else-if="entradaActiva.titulo === 'Leyendas urbanas'" class="detalle" />
+              <SenalesPerdidasDetalle v-else-if="entradaActiva.titulo === 'Señales perdidas'" class="detalle" />
             </div>
           </article>
         </div>
