@@ -16,17 +16,20 @@ const leyendas = [
       {
         "titulo": "Jerry Palus · variante de Chicago",
         "texto": "En una entrevista grabada en 1986, Palus recordó que en 1939 conoció a una mujer en un salón de baile. Aseguró que la llevó en coche y la vio desaparecer cerca del cementerio de Resurrection. Su historia pertenece a una variante estadounidense de la autoestopista fantasma.",
-        "fuente": "https://www.cbsnews.com/chicago/news/chicago-hauntings-resurrection-mary-most-famous-ghost/"
+        "fuente": "https://www.cbsnews.com/chicago/news/chicago-hauntings-resurrection-mary-most-famous-ghost/",
+        "tipo": "Testimonio publicado"
       },
       {
         "titulo": "Ralph, taxista · variante de Chicago",
         "texto": "Contó al columnista Bill Geist que recogió a una mujer con vestido blanco en Archer Road. Dijo que, al llegar a la altura del cementerio, desapareció del taxi. Su declaración se publicó en 1979.",
-        "fuente": "https://www.cbsnews.com/chicago/news/chicago-hauntings-resurrection-mary-most-famous-ghost/"
+        "fuente": "https://www.cbsnews.com/chicago/news/chicago-hauntings-resurrection-mary-most-famous-ghost/",
+        "tipo": "Testimonio publicado"
       },
       {
         "titulo": "Taxista sin identificar · Chicago, 1973",
         "texto": "Según el relato recogido por CBS, un taxista dijo que una pasajera vestida de blanco había desaparecido sin pagar.",
-        "fuente": "https://www.cbsnews.com/amp/chicago/news/chicago-hauntings-resurrection-mary-most-famous-ghost/"
+        "fuente": "https://www.cbsnews.com/amp/chicago/news/chicago-hauntings-resurrection-mary-most-famous-ghost/",
+        "tipo": "Testimonio publicado"
       }
     ],
     "fotos": [
@@ -53,12 +56,20 @@ const leyendas = [
       {
         "titulo": "Marina · río Magdalena, México",
         "texto": "En una entrevista recogida por el archivo de folclore de USC, Marina afirmó haber oído a La Llorona varias veces. Recordó una madrugada en que vio junto al río a una mujer de aspecto harapiento que lloraba. Corrió de vuelta al campamento.",
-        "fuente": "https://folklore.usc.edu/marinas-la-llorona/"
+        "fuente": "https://folklore.usc.edu/marinas-la-llorona/",
+        "tipo": "Testimonio publicado"
       },
       {
         "titulo": "Informante entrevistado en el archivo de USC · Colima",
         "texto": "El informante dijo que de niño oyó, junto a su madre, un llanto que ambos asociaron con La Llorona. La ficha del archivo recoge su experiencia como un recuerdo personal.",
-        "fuente": "https://folklore.usc.edu/author/garc101usc-edu/"
+        "fuente": "https://folklore.usc.edu/author/garc101usc-edu/",
+        "tipo": "Testimonio publicado"
+      },
+      {
+        "tipo": "Artículo",
+        "titulo": "Los relatos junto al río en Parral",
+        "texto": "Stephen Winick recoge el recuerdo de un informante que creció oyendo la historia en Chihuahua. Explica que en su entorno se hablaba de gritos y de figuras entre la niebla de los canales. El artículo documenta lo que se contaba en esa comunidad.",
+        "fuente": "https://blogs.loc.gov/folklife/2021/10/growing-up-with-la-llorona/"
       }
     ],
     "fotos": [
@@ -85,12 +96,20 @@ const leyendas = [
       {
         "titulo": "Madelyne Tolentino · Canóvanas, 1995",
         "texto": "Declaró que vio una figura de dos patas desde su casa. En una entrevista describió sus ojos y sus extremidades, y señaló que su madre estaba con ella.",
-        "fuente": "https://pome-mag.com/wp-content/uploads/2017/01/MadelyneTolentinoInterview.pdf"
+        "fuente": "https://pome-mag.com/wp-content/uploads/2017/01/MadelyneTolentinoInterview.pdf",
+        "tipo": "Testimonio publicado"
       },
       {
         "titulo": "Misael Negrón · Canóvanas, 1995",
         "texto": "Dijo al periodista Karl Ross que, desde el balcón, vio una figura de ojos rojos y espinas salir de una luz intensa en el patio. También atribuyó a esa figura un ataque contra la cabra de su familia.",
-        "fuente": "https://www.washingtonpost.com/archive/politics/1995/12/26/mystery-creature-ravages-puerto-rican-livestock/b7704250-dae0-4fa3-a886-561db637b463/"
+        "fuente": "https://www.washingtonpost.com/archive/politics/1995/12/26/mystery-creature-ravages-puerto-rican-livestock/b7704250-dae0-4fa3-a886-561db637b463/",
+        "tipo": "Testimonio publicado"
+      },
+      {
+        "tipo": "Reportaje",
+        "titulo": "Puerto Rico en los informativos · AP Archive, 1996",
+        "texto": "Este reportaje se hizo mientras circulaban los primeros avisos. Incluye entrevistas sobre los supuestos encuentros y permite ver cómo se hablaba de la criatura en Puerto Rico en aquel momento.",
+        "fuente": "https://www.youtube.com/watch?v=PhDbEev8OPM"
       }
     ],
     "fotos": [
@@ -113,7 +132,26 @@ const leyendas = [
       "En esa tradición, el peligro tiene mucho que ver con el hambre y el invierno. El diccionario del pueblo ojibwe recoge el nombre wiindigoo para un ser caníbal asociado a esa estación. Otras comunidades tienen sus propias maneras de contarlo.",
       "En esta versión, los perros llevan la historia. Son los primeros en notar que alguien va por delante. Quien escucha sigue a la mujer por un camino donde cada paso la acerca a algo que sus perros ya conocen."
     ],
-    "registros": [],
+    "registros": [
+      {
+        "tipo": "Archivo de tradición oral",
+        "titulo": "La viajera y sus dos perros",
+        "texto": "El Milwaukee Public Museum recoge el relato ojibwe que inspira esta ficha. En él, los perros se adelantan a la viajera y se enfrentan al perro del windigo.",
+        "fuente": "https://www.mpm.org/index.php/educators/wirp/nations/ojibwe/oral-tradition"
+      },
+      {
+        "tipo": "Diccionario",
+        "titulo": "Wiindigoo en la lengua ojibwe",
+        "texto": "El Ojibwe People’s Dictionary conserva el nombre wiindigoo y lo asocia con un ser caníbal del invierno. La ficha también permite escuchar la pronunciación.",
+        "fuente": "https://ojibwe.lib.umn.edu/main-entry/wiindigoo-na"
+      },
+      {
+        "tipo": "Estudio",
+        "titulo": "El windigo en los relatos de Georgian Bay",
+        "texto": "Una recopilación histórica canadiense recoge narraciones atribuidas a John Manatuwaba y sitúa al windigo en el contexto del invierno y el hambre.",
+        "fuente": "https://publications.gc.ca/collections/collection_2022/rncan-nrcan/NM3-2-78-1935-eng.pdf"
+      }
+    ],
     "fotos": [
       "wendigo-1.jpg",
       "wendigo-2.jpg",
@@ -131,7 +169,26 @@ const leyendas = [
       "Esa es la versión que contó Stanley Robertson. La señal que delata al pescador son sus pezuñas. El muchacho entiende con quién está hablando y consigue escapar. En otras versiones, el espíritu, conocido como kelpie, espera junto al agua con forma de caballo.",
       "La escena acaba al dar con tierra firme. En la historia del caballo, en cambio, quien lo monta descubre demasiado tarde que no puede bajarse. Las dos versiones arrancan con algo que parece inofensivo en la otra orilla."
     ],
-    "registros": [],
+    "registros": [
+      {
+        "tipo": "Artículo con grabación",
+        "titulo": "Stanley Robertson cuenta el encuentro del pescador",
+        "texto": "Historic Environment Scotland presenta al narrador de Aberdeen y enlaza su grabación. El muchacho reconoce al desconocido por las pezuñas cuando ya ha entrado en el río.",
+        "fuente": "https://blog.historicenvironment.scot/2018/10/supernatural-creatures-scottish-folklore/"
+      },
+      {
+        "tipo": "Diccionario histórico",
+        "titulo": "El caballo del río en el diccionario escocés",
+        "texto": "El Scottish National Dictionary reúne ejemplos del uso de kelpie. Entre ellos está la descripción del espíritu que vive en el río y toma forma de caballo.",
+        "fuente": "https://www.dsl.ac.uk/entry/snd/kelpie"
+      },
+      {
+        "tipo": "Archivo histórico",
+        "titulo": "Otras versiones del caballo de agua",
+        "texto": "Una recopilación de la Gaelic Society of Inverness reúne historias del caballo de agua, entre ellas la de un ser que se presenta con forma humana en la isla de Skye.",
+        "fuente": "https://www.ambaile.org.uk/coo/user/assets/155/46287.pdf"
+      }
+    ],
     "fotos": [
       "kelpie-1.jpg",
       "kelpie-2.jpg",
@@ -152,7 +209,26 @@ const leyendas = [
       "En Japón, el rumor sobre Kuchisake-onna se extendió en 1979. Algunas investigaciones vinculan los primeros relatos a Gifu. Entre los niños circulaban respuestas que supuestamente permitían escapar y otras que dejaban a quien contestaba en peligro.",
       "Cada grupo podía situar a la mujer en su propio camino de vuelta de la escuela. Cambiaban las calles y el desenlace. La pregunta seguía siendo la misma."
     ],
-    "registros": [],
+    "registros": [
+      {
+        "tipo": "Experiencia personal",
+        "titulo": "El miedo de volver sola de la escuela",
+        "texto": "El folclorista Michael Dylan Foster cuenta que una amiga japonesa recordaba haber oído la historia de niña y haber tenido miedo de regresar sola a casa. Su experiencia fue el miedo que le provocó la leyenda.",
+        "fuente": "https://content.ucpress.edu/title/9780520271029/9780520271029_one.pdf"
+      },
+      {
+        "tipo": "Artículo",
+        "titulo": "Cómo se extendió el rumor en Japón",
+        "texto": "El folclorista Yoshiyuki Iikura explica cómo se propagó el relato de Kuchisake-onna y cómo adquirió variantes fuera de Japón.",
+        "fuente": "https://www.nippon.com/en/articles/-/15901"
+      },
+      {
+        "tipo": "Estudio",
+        "titulo": "Los relatos de Gifu y el auge de 1979",
+        "texto": "Noriko T. Reider repasa las investigaciones que vinculan el rumor con Gifu y explica cómo llegó a difundirse por todo Japón en 1979.",
+        "fuente": "https://tile.loc.gov/storage-services/master/gdc/gdcebookspublic/20/20/71/98/76/2020719876/2020719876.pdf"
+      }
+    ],
     "fotos": [
       "mascarilla-1.jpg",
       "mascarilla-2.jpg",
@@ -174,17 +250,20 @@ const leyendas = [
       {
         "titulo": "Testigos entrevistados por Cuarto Milenio · Galicia",
         "texto": "El programa reúne a personas que aseguran haber presenciado una procesión que interpretaron como la Santa Compaña. Los relatos se presentan en el propio reportaje.",
-        "fuente": "https://www.cuatro.com/cuarto-milenio/santa-compana-testigos-galicia_18_3275220571.html?amp=true"
+        "fuente": "https://www.cuatro.com/cuarto-milenio/santa-compana-testigos-galicia_18_3275220571.html?amp=true",
+        "tipo": "Testimonio publicado"
       },
       {
         "titulo": "Testigos entrevistados en Villarrubia de los Ojos",
         "texto": "En otro reportaje, entrevistados de un pueblo de Castilla-La Mancha cuentan encuentros que relacionan con una comitiva de figuras. Uno describe a alguien que se acercaba con aspecto de monje.",
-        "fuente": "https://www.cuatro.com/television/20241110/apariciones-santa-compana-villarubia-ojos_18_013898704.html"
+        "fuente": "https://www.cuatro.com/television/20241110/apariciones-santa-compana-villarubia-ojos_18_013898704.html",
+        "tipo": "Testimonio publicado"
       },
       {
         "titulo": "Entrevistados en Lagunilla · Salamanca",
         "texto": "Vecinos dijeron a Cuarto Milenio que habían visto apariciones que asociaron con la Huestía, una tradición emparentada con la Compaña.",
-        "fuente": "https://www.cuatro.com/cuarto-milenio/huestia-procesion-animas-santa-compana_18_2635530024.html"
+        "fuente": "https://www.cuatro.com/cuarto-milenio/huestia-procesion-animas-santa-compana_18_2635530024.html",
+        "tipo": "Testimonio publicado"
       }
     ],
     "fotos": [
@@ -208,7 +287,20 @@ const leyendas = [
       {
         "titulo": "Oyente anónimo · Believing the Bizarre",
         "texto": "En un relato enviado al programa, una persona dijo que vio por un instante una cara que le pareció de mujer al acercarse a un baño, tiempo después de haber jugado a Bloody Mary. El programa publica su declaración como relato de un oyente.",
-        "fuente": "https://believingthebizarre.com/the-urban-legend-of-bloody-mary/"
+        "fuente": "https://believingthebizarre.com/the-urban-legend-of-bloody-mary/",
+        "tipo": "Testimonio publicado"
+      },
+      {
+        "tipo": "Estudio",
+        "titulo": "Alan Dundes · versiones del reto del espejo",
+        "texto": "El folclorista reunió versiones del juego de Bloody Mary y estudió las diferencias en lo que hacen los participantes y lo que, según cada versión, aparece en el cristal.",
+        "fuente": "https://home.iscte-iul.pt/~fgvs/Dundes%20bloody.pdf"
+      },
+      {
+        "tipo": "Estudio de campo",
+        "titulo": "Julia Bishop · un reto parecido en Sheffield",
+        "texto": "Bishop documenta a escolares que fueron a comprobar si había un fantasma en los aseos y volvieron diciendo que lo habían visto. Es un caso emparentado que el estudio distingue del juego de Bloody Mary.",
+        "fuente": "https://discovery.ucl.ac.uk/id/eprint/10206508/1/Playing-the-Archive.pdf"
       }
     ],
     "fotos": [
@@ -228,7 +320,26 @@ const leyendas = [
       "Los relatos de Hanako-san circulan entre escolares en Japón. A veces la puerta está en otro piso. A veces quien la abre no consigue ver nada. Quien cuenta la historia suele señalar el baño que todos conocen.",
       "El susto se pasa de un grupo a otro. Basta que alguien se retrase un poco al volver del baño para que los que esperan empiecen a construir su propia versión."
     ],
-    "registros": [],
+    "registros": [
+      {
+        "tipo": "Experiencia personal",
+        "titulo": "Yoshioka Kazushi · recuerdos de su escuela",
+        "texto": "En una entrevista, el investigador recuerda que, cuando era niño, lo invitaron a unirse a un grupo que quería comprobar si Hanako estaba en el baño. También explica cómo los ruidos durante esos retos se incorporan a nuevas versiones.",
+        "fuente": "https://www.nippon.com/en/articles/-/16280"
+      },
+      {
+        "tipo": "Estudio de campo",
+        "titulo": "Los misterios de la escuela contados por alumnos",
+        "texto": "La publicación del Museo Nacional de Etnología de Japón reúne historias que escolares contaban sobre sus propios centros. Hanako aparece entre los nombres asociados a los misterios escolares.",
+        "fuente": "https://minpaku.repo.nii.ac.jp/record/3020/files/SES40_012.pdf"
+      },
+      {
+        "tipo": "Estudio",
+        "titulo": "Hanako en el folclore contemporáneo",
+        "texto": "El libro Haunting Experiences menciona el trabajo de Linda Spetter sobre Hanako y explica por qué las apariciones en baños escolares forman parte de los relatos que circulan entre niños.",
+        "fuente": "https://read.upcolorado.com/read/haunting-experiences-ghosts-in-contemporary-folklore/section/44f30611-e723-4750-b20d-dc9a51ad470a"
+      }
+    ],
     "fotos": [
       "hanako-1.jpg",
       "hanako-2.jpg",
@@ -253,17 +364,20 @@ const leyendas = [
       {
         "titulo": "Linda y Roger Scarberry, Steve y Mary Mallette · 15 de noviembre",
         "texto": "Las dos parejas describieron una figura con ojos rojos cerca de la zona conocida como TNT Area. El encuentro fue publicado por la prensa local.",
-        "fuente": "https://www.forteanarchives.org/datasheets-1966-1967/"
+        "fuente": "https://www.forteanarchives.org/datasheets-1966-1967/",
+        "tipo": "Testimonio publicado"
       },
       {
         "titulo": "Paul Yoder y Benjamin Enochs · 18 de noviembre",
         "texto": "Dos bomberos voluntarios dijeron haber visto un animal enorme parecido a un ave, también con ojos rojos, en la misma zona.",
-        "fuente": "https://www.forteanarchives.org/datasheets-1966-1967/"
+        "fuente": "https://www.forteanarchives.org/datasheets-1966-1967/",
+        "tipo": "Testimonio publicado"
       },
       {
         "titulo": "Thomas Ury · 25 de noviembre",
         "texto": "Mientras iba a trabajar, contó que vio algo volar sobre su coche. Al principio lo confundió con un helicóptero y después lo describió como un ave de gran tamaño.",
-        "fuente": "https://www.forteanarchives.org/datasheets-1966-1967/"
+        "fuente": "https://www.forteanarchives.org/datasheets-1966-1967/",
+        "tipo": "Testimonio publicado"
       }
     ],
     "fotos": [
@@ -290,17 +404,20 @@ const leyendas = [
       {
         "titulo": "Keith Flory · Woodbridge, 1973",
         "texto": "Años después del encuentro, Flory contó que un perro negro de gran tamaño le siguió mientras conducía su moto. El investigador Matt Salusbury publicó un resumen de su relato.",
-        "fuente": "https://mattsalusbury.blogspot.com/2021/12/?m=0"
+        "fuente": "https://mattsalusbury.blogspot.com/2021/12/?m=0",
+        "tipo": "Testimonio publicado"
       },
       {
         "titulo": "Alice · Suffolk",
         "texto": "El boletín de la Aylsham Local History Society recoge el relato de una adolescente de catorce años. Afirmó ver, mientras viajaba con su familia, una figura negra grande que adelantaba a los coches.",
-        "fuente": "https://aylshamhistory.org/wp-content/uploads/2023/04/Vol11.2.pdf"
+        "fuente": "https://aylshamhistory.org/wp-content/uploads/2023/04/Vol11.2.pdf",
+        "tipo": "Testimonio publicado"
       },
       {
         "titulo": "Graham Grant · Gorleston, 1972",
         "texto": "El guardacostas declaró haber visto un perro negro en la playa. El archivo de Black Shuck remite a una noticia de abril de 1972.",
-        "fuente": "https://blackshuck.org/archive"
+        "fuente": "https://blackshuck.org/archive",
+        "tipo": "Testimonio publicado"
       }
     ],
     "fotos": [
@@ -324,17 +441,20 @@ const leyendas = [
       {
         "titulo": "Payton Leutner · entrevista de 2019",
         "texto": "Leutner habló públicamente con ABC News sobre el ataque que sobrevivió y sobre cómo lo recuerda años después. Su testimonio trata de la agresión.",
-        "fuente": "https://abcnews.com/US/slender-man-stabbing-victim-speaks-publicly-time-situation/story?id=66268385"
+        "fuente": "https://abcnews.com/US/slender-man-stabbing-victim-speaks-publicly-time-situation/story?id=66268385",
+        "tipo": "Caso de Waukesha"
       },
       {
         "titulo": "Anissa Weier · declaración recogida en el expediente",
         "texto": "Según la resolución de apelación, Weier contó a una detective que Geyser le había dicho que tenían que convertirse en servidoras de Slender Man. Es una declaración sobre lo que afirmaron creer, dentro de un caso de agresión real.",
-        "fuente": "https://www.courthousenews.com/wp-content/uploads/2020/08/18ap1897-geyser-slenderman-appeals-court-decision-8.12.20.pdf"
+        "fuente": "https://www.courthousenews.com/wp-content/uploads/2020/08/18ap1897-geyser-slenderman-appeals-court-decision-8.12.20.pdf",
+        "tipo": "Caso de Waukesha"
       },
       {
         "titulo": "Morgan Geyser · entrevista policial",
         "texto": "Geyser dio a la policía una versión distinta de la de Weier sobre quién le había dicho que tenían que actuar. Su declaración trata de la agresión y del papel que atribuían al personaje ficticio.",
-        "fuente": "https://abcnews.com/US/investigators-slender-man-case-discuss-chilling-interviews-12/story?id=66320806"
+        "fuente": "https://abcnews.com/US/investigators-slender-man-case-discuss-chilling-interviews-12/story?id=66320806",
+        "tipo": "Caso de Waukesha"
       }
     ],
     "fotos": [
@@ -440,11 +560,9 @@ function moverFoto(paso: number) {
         </aside>
 
         <section class="archivo" aria-labelledby="archivo-titulo">
-          <h2 id="archivo-titulo">{{ activa.id === 'slenderman' ? 'El caso de Waukesha' : 'Testimonios de experiencias' }}</h2>
-          <p v-if="!activa.registros.length" class="nota">
-            Las fuentes de esta ficha recogen la tradición oral y cómo circuló la historia. Falta una declaración personal atribuible a un testigo.
-          </p>
+          <h2 id="archivo-titulo">{{ activa.id === 'slenderman' ? 'El caso de Waukesha' : 'Testimonios y referencias' }}</h2>
           <article v-for="registro in activa.registros" :key="registro.titulo" class="registro">
+            <span class="tipo-registro">{{ registro.tipo }}</span>
             <h3>{{ registro.titulo }}</h3>
             <p>{{ registro.texto }}</p>
             <a :href="registro.fuente">Consultar la fuente ↗</a>
@@ -593,5 +711,13 @@ a { color: #ffbdd9; text-decoration: underline; text-underline-offset: .2em; }
 .foto img.enfoque-bungay {
   object-position: left center;
   mask-image: radial-gradient(ellipse 62% 67% at 44% 46%, #000 27%, #000e 43%, #0007 62%, transparent 87%);
+}
+
+.tipo-registro {
+  display: inline-block;
+  margin-bottom: .3rem;
+  color: #e9a8c8;
+  font-size: .78rem;
+  letter-spacing: .06em;
 }
 </style>
